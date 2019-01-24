@@ -14,7 +14,7 @@ import WebRTC
     case RECV_ONLY
     case SEND_ONLY
     case SEND_RECV
-    
+    case NONE
     
     public typealias RawValue = String
     public var rawValue: RawValue {
@@ -27,6 +27,8 @@ import WebRTC
             return "sendonly"
         case .SEND_RECV:
             return "sendrecv"
+        case .NONE:
+            return ""
         }
     }
     
@@ -68,6 +70,8 @@ import WebRTC
             return RTCRtpTransceiverDirection.sendOnly
         case .SEND_RECV:
             return RTCRtpTransceiverDirection.sendRecv
+        case .NONE:
+            return RTCRtpTransceiverDirection.inactive
         }
     }
 }

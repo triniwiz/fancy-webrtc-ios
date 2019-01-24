@@ -34,12 +34,12 @@ import WebRTC
     }
     
     
-    public var currentDirection: FancyRTCRtpTransceiverDirection? {
+  public var currentDirection: FancyRTCRtpTransceiverDirection {
         get{
             let direction: UnsafeMutablePointer<RTCRtpTransceiverDirection> = UnsafeMutablePointer(bitPattern: RTCRtpTransceiverDirection.inactive.rawValue)!
             let got = _rtpTransceiver.currentDirection(direction)
             if(!got){
-                return nil
+                return .NONE
             }
             return FancyRTCRtpTransceiverDirection(direction: direction.pointee)
         }
