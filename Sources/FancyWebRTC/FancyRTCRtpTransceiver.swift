@@ -13,7 +13,7 @@ import WebRTC
     private var _rtpTransceiver: RTCRtpTransceiver
     
     
-    init(rtpTransceiver: RTCRtpTransceiver) {
+    public init(rtpTransceiver: RTCRtpTransceiver) {
         _rtpTransceiver = rtpTransceiver
     }
     

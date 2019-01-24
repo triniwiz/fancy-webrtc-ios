@@ -13,11 +13,11 @@ import WebRTC
     
     private var _sessionDescription: RTCSessionDescription
     
-    init(type: FancyRTCSdpType, description: String) {
+    public init(type: FancyRTCSdpType, description: String) {
         _sessionDescription = RTCSessionDescription(type: type.rtcValue, sdp: description)
     }
     
-    init(sdp: RTCSessionDescription) {
+    public init(sdp: RTCSessionDescription) {
         _sessionDescription = sdp
     }
     
