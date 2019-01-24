@@ -15,4 +15,10 @@ import WebRTC
     public init(channel: FancyRTCDataChannel) {
         _channel = channel;
     }
+    
+    public var channel: FancyRTCDataChannel {
+        get {
+            return _channel
+        }
+    }
 }
