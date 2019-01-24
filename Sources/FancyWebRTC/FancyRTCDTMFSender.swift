@@ -32,7 +32,7 @@
             
         }
         
-        public func insertDTMF(tones: String, duration: Double, interToneGap: Double) {
+        @objc public func insertDTMF(tones: String, duration: Double, interToneGap: Double) {
             _sender.insertDtmf(tones, duration: duration, interToneGap: interToneGap)
         }
     }
