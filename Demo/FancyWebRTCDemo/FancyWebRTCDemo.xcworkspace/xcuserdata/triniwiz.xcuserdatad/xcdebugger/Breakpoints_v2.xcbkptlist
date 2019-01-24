@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FancyWebRTCDemo/ViewController.swift"
+            timestampString = "569634122.973875"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FancyWebRTCDemo.ViewController.__allocating_init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; FancyWebRTCDemo.ViewController"
+                  moduleName = "FancyWebRTCDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/triniwiz/Documents/fancy-webrtc-ios/Demo/FancyWebRTCDemo/FancyWebRTCDemo/ViewController.swift"
+                  timestampString = "569634123.416078"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FancyWebRTCDemo.ViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; FancyWebRTCDemo.ViewController"
+                  moduleName = "FancyWebRTCDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/triniwiz/Documents/fancy-webrtc-ios/Demo/FancyWebRTCDemo/FancyWebRTCDemo/ViewController.swift"
+                  timestampString = "569634123.419102"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "268">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FancyWebRTCDemo.ViewController.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;FancyWebRTCDemo.ViewController&gt;"
+                  moduleName = "FancyWebRTCDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/triniwiz/Documents/fancy-webrtc-ios/Demo/FancyWebRTCDemo/FancyWebRTCDemo/ViewController.swift"
+                  timestampString = "569634123.420662"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FancyWebRTCDemo.ViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;FancyWebRTCDemo.ViewController&gt;"
+                  moduleName = "FancyWebRTCDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/triniwiz/Documents/fancy-webrtc-ios/Demo/FancyWebRTCDemo/FancyWebRTCDemo/ViewController.swift"
+                  timestampString = "569634123.422088"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "FancyWebRTCDemo.ViewController.__deallocating_deinit"
+                  moduleName = "FancyWebRTCDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/triniwiz/Documents/fancy-webrtc-ios/Demo/FancyWebRTCDemo/FancyWebRTCDemo/ViewController.swift"
+                  timestampString = "569634123.423562"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -1,0 +1,4 @@
+.DS_Store
+Demo/**/Pods
+Podfile.lock
+Sources/Pods

@@ -1,0 +1,7 @@
+target 'FancyWebRTC' do
+pod 'GoogleWebRTC'
+end
+
+target 'FancyWebRTCTests' do
+    pod 'GoogleWebRTC'
+    end

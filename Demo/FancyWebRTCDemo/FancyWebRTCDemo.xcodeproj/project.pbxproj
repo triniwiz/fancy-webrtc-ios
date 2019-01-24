@@ -1,0 +1,724 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F147D2E321F37BFC00C79F73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D2E221F37BFC00C79F73 /* AppDelegate.swift */; };
+		F147D2E521F37BFC00C79F73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D2E421F37BFC00C79F73 /* ViewController.swift */; };
+		F147D2E821F37BFC00C79F73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F147D2E621F37BFC00C79F73 /* Main.storyboard */; };
+		F147D2EA21F37BFD00C79F73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F147D2E921F37BFD00C79F73 /* Assets.xcassets */; };
+		F147D2ED21F37BFD00C79F73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F147D2EB21F37BFD00C79F73 /* LaunchScreen.storyboard */; };
+		F147D2F821F37BFD00C79F73 /* FancyWebRTCDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D2F721F37BFD00C79F73 /* FancyWebRTCDemoTests.swift */; };
+		F147D30321F37BFD00C79F73 /* FancyWebRTCDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D30221F37BFD00C79F73 /* FancyWebRTCDemoUITests.swift */; };
+		F147D34421F3E69400C79F73 /* SocketIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F147D34321F3E69400C79F73 /* SocketIO.framework */; };
+		F147D34521F3E77100C79F73 /* FancyWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F147D31621F37C7300C79F73 /* FancyWebRTC.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F147D2F421F37BFD00C79F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F147D2D721F37BFC00C79F73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F147D2DE21F37BFC00C79F73;
+			remoteInfo = FancyWebRTCDemo;
+		};
+		F147D2FF21F37BFD00C79F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F147D2D721F37BFC00C79F73 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F147D2DE21F37BFC00C79F73;
+			remoteInfo = FancyWebRTCDemo;
+		};
+		F147D31521F37C7300C79F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F147D31021F37C7300C79F73 /* FancyWebRTC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F147D2BC21F37B1500C79F73;
+			remoteInfo = FancyWebRTC;
+		};
+		F147D31721F37C7300C79F73 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F147D31021F37C7300C79F73 /* FancyWebRTC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F147D2C521F37B1500C79F73;
+			remoteInfo = FancyWebRTCTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		30E0E3998EBE9C68B80F52E3 /* Pods-FancyWebRTCDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FancyWebRTCDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo.release.xcconfig"; sourceTree = "<group>"; };
+		66D626877753D01834EB8473 /* Pods_FancyWebRTCDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FancyWebRTCDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1C83A88AF6CCD0E56B70BEA /* Pods-FancyWebRTCDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FancyWebRTCDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		A87593488413C3FCBECD316D /* Pods_FancyWebRTCDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FancyWebRTCDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAC5C94F7974B7CA46ACD03F /* Pods_FancyWebRTCDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FancyWebRTCDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F147D2DF21F37BFC00C79F73 /* FancyWebRTCDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FancyWebRTCDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F147D2E221F37BFC00C79F73 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F147D2E421F37BFC00C79F73 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F147D2E721F37BFC00C79F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F147D2E921F37BFD00C79F73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F147D2EC21F37BFD00C79F73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F147D2EE21F37BFD00C79F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F147D2F321F37BFD00C79F73 /* FancyWebRTCDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FancyWebRTCDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F147D2F721F37BFD00C79F73 /* FancyWebRTCDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyWebRTCDemoTests.swift; sourceTree = "<group>"; };
+		F147D2F921F37BFD00C79F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F147D2FE21F37BFD00C79F73 /* FancyWebRTCDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FancyWebRTCDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F147D30221F37BFD00C79F73 /* FancyWebRTCDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyWebRTCDemoUITests.swift; sourceTree = "<group>"; };
+		F147D30421F37BFD00C79F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F147D31021F37C7300C79F73 /* FancyWebRTC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FancyWebRTC.xcodeproj; path = ../../Sources/FancyWebRTC.xcodeproj; sourceTree = "<group>"; };
+		F147D34021F3E65300C79F73 /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F147D34321F3E69400C79F73 /* SocketIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SocketIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F147D2DC21F37BFC00C79F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F147D34521F3E77100C79F73 /* FancyWebRTC.framework in Frameworks */,
+				F147D34421F3E69400C79F73 /* SocketIO.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F147D2F021F37BFD00C79F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F147D2FB21F37BFD00C79F73 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B9A823D11BCE2E1B2E80FA5E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A1C83A88AF6CCD0E56B70BEA /* Pods-FancyWebRTCDemo.debug.xcconfig */,
+				30E0E3998EBE9C68B80F52E3 /* Pods-FancyWebRTCDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F147D2D621F37BFC00C79F73 = {
+			isa = PBXGroup;
+			children = (
+				F147D34021F3E65300C79F73 /* SocketIO.framework */,
+				F147D31021F37C7300C79F73 /* FancyWebRTC.xcodeproj */,
+				F147D2E121F37BFC00C79F73 /* FancyWebRTCDemo */,
+				F147D2F621F37BFD00C79F73 /* FancyWebRTCDemoTests */,
+				F147D30121F37BFD00C79F73 /* FancyWebRTCDemoUITests */,
+				F147D2E021F37BFC00C79F73 /* Products */,
+				F147D31921F37E9600C79F73 /* Frameworks */,
+				B9A823D11BCE2E1B2E80FA5E /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		F147D2E021F37BFC00C79F73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F147D2DF21F37BFC00C79F73 /* FancyWebRTCDemo.app */,
+				F147D2F321F37BFD00C79F73 /* FancyWebRTCDemoTests.xctest */,
+				F147D2FE21F37BFD00C79F73 /* FancyWebRTCDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F147D2E121F37BFC00C79F73 /* FancyWebRTCDemo */ = {
+			isa = PBXGroup;
+			children = (
+				F147D2E221F37BFC00C79F73 /* AppDelegate.swift */,
+				F147D2E421F37BFC00C79F73 /* ViewController.swift */,
+				F147D2E621F37BFC00C79F73 /* Main.storyboard */,
+				F147D2E921F37BFD00C79F73 /* Assets.xcassets */,
+				F147D2EB21F37BFD00C79F73 /* LaunchScreen.storyboard */,
+				F147D2EE21F37BFD00C79F73 /* Info.plist */,
+			);
+			path = FancyWebRTCDemo;
+			sourceTree = "<group>";
+		};
+		F147D2F621F37BFD00C79F73 /* FancyWebRTCDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				F147D2F721F37BFD00C79F73 /* FancyWebRTCDemoTests.swift */,
+				F147D2F921F37BFD00C79F73 /* Info.plist */,
+			);
+			path = FancyWebRTCDemoTests;
+			sourceTree = "<group>";
+		};
+		F147D30121F37BFD00C79F73 /* FancyWebRTCDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F147D30221F37BFD00C79F73 /* FancyWebRTCDemoUITests.swift */,
+				F147D30421F37BFD00C79F73 /* Info.plist */,
+			);
+			path = FancyWebRTCDemoUITests;
+			sourceTree = "<group>";
+		};
+		F147D31121F37C7300C79F73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F147D31621F37C7300C79F73 /* FancyWebRTC.framework */,
+				F147D31821F37C7300C79F73 /* FancyWebRTCTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F147D31921F37E9600C79F73 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F147D34321F3E69400C79F73 /* SocketIO.framework */,
+				A87593488413C3FCBECD316D /* Pods_FancyWebRTCDemo.framework */,
+				EAC5C94F7974B7CA46ACD03F /* Pods_FancyWebRTCDemoTests.framework */,
+				66D626877753D01834EB8473 /* Pods_FancyWebRTCDemoUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F147D2DE21F37BFC00C79F73 /* FancyWebRTCDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F147D30721F37BFD00C79F73 /* Build configuration list for PBXNativeTarget "FancyWebRTCDemo" */;
+			buildPhases = (
+				75EEF197E6229112297D4D52 /* [CP] Check Pods Manifest.lock */,
+				F147D2DB21F37BFC00C79F73 /* Sources */,
+				F147D2DC21F37BFC00C79F73 /* Frameworks */,
+				F147D2DD21F37BFC00C79F73 /* Resources */,
+				183808B636EF83A3CA7F67C8 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FancyWebRTCDemo;
+			productName = FancyWebRTCDemo;
+			productReference = F147D2DF21F37BFC00C79F73 /* FancyWebRTCDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F147D2F221F37BFD00C79F73 /* FancyWebRTCDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F147D30A21F37BFD00C79F73 /* Build configuration list for PBXNativeTarget "FancyWebRTCDemoTests" */;
+			buildPhases = (
+				F147D2EF21F37BFD00C79F73 /* Sources */,
+				F147D2F021F37BFD00C79F73 /* Frameworks */,
+				F147D2F121F37BFD00C79F73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F147D2F521F37BFD00C79F73 /* PBXTargetDependency */,
+			);
+			name = FancyWebRTCDemoTests;
+			productName = FancyWebRTCDemoTests;
+			productReference = F147D2F321F37BFD00C79F73 /* FancyWebRTCDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F147D2FD21F37BFD00C79F73 /* FancyWebRTCDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F147D30D21F37BFD00C79F73 /* Build configuration list for PBXNativeTarget "FancyWebRTCDemoUITests" */;
+			buildPhases = (
+				F147D2FA21F37BFD00C79F73 /* Sources */,
+				F147D2FB21F37BFD00C79F73 /* Frameworks */,
+				F147D2FC21F37BFD00C79F73 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F147D30021F37BFD00C79F73 /* PBXTargetDependency */,
+			);
+			name = FancyWebRTCDemoUITests;
+			productName = FancyWebRTCDemoUITests;
+			productReference = F147D2FE21F37BFD00C79F73 /* FancyWebRTCDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F147D2D721F37BFC00C79F73 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Osei Fortune";
+				TargetAttributes = {
+					F147D2DE21F37BFC00C79F73 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					F147D2F221F37BFD00C79F73 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = F147D2DE21F37BFC00C79F73;
+					};
+					F147D2FD21F37BFD00C79F73 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = F147D2DE21F37BFC00C79F73;
+					};
+				};
+			};
+			buildConfigurationList = F147D2DA21F37BFC00C79F73 /* Build configuration list for PBXProject "FancyWebRTCDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F147D2D621F37BFC00C79F73;
+			productRefGroup = F147D2E021F37BFC00C79F73 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F147D31121F37C7300C79F73 /* Products */;
+					ProjectRef = F147D31021F37C7300C79F73 /* FancyWebRTC.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F147D2DE21F37BFC00C79F73 /* FancyWebRTCDemo */,
+				F147D2F221F37BFD00C79F73 /* FancyWebRTCDemoTests */,
+				F147D2FD21F37BFD00C79F73 /* FancyWebRTCDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F147D31621F37C7300C79F73 /* FancyWebRTC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FancyWebRTC.framework;
+			remoteRef = F147D31521F37C7300C79F73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F147D31821F37C7300C79F73 /* FancyWebRTCTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = FancyWebRTCTests.xctest;
+			remoteRef = F147D31721F37C7300C79F73 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F147D2DD21F37BFC00C79F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F147D2ED21F37BFD00C79F73 /* LaunchScreen.storyboard in Resources */,
+				F147D2EA21F37BFD00C79F73 /* Assets.xcassets in Resources */,
+				F147D2E821F37BFC00C79F73 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F147D2F121F37BFD00C79F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F147D2FC21F37BFD00C79F73 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		183808B636EF83A3CA7F67C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75EEF197E6229112297D4D52 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FancyWebRTCDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F147D2DB21F37BFC00C79F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F147D2E521F37BFC00C79F73 /* ViewController.swift in Sources */,
+				F147D2E321F37BFC00C79F73 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F147D2EF21F37BFD00C79F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F147D2F821F37BFD00C79F73 /* FancyWebRTCDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F147D2FA21F37BFD00C79F73 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F147D30321F37BFD00C79F73 /* FancyWebRTCDemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F147D2F521F37BFD00C79F73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F147D2DE21F37BFC00C79F73 /* FancyWebRTCDemo */;
+			targetProxy = F147D2F421F37BFD00C79F73 /* PBXContainerItemProxy */;
+		};
+		F147D30021F37BFD00C79F73 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F147D2DE21F37BFC00C79F73 /* FancyWebRTCDemo */;
+			targetProxy = F147D2FF21F37BFD00C79F73 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F147D2E621F37BFC00C79F73 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F147D2E721F37BFC00C79F73 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F147D2EB21F37BFD00C79F73 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F147D2EC21F37BFD00C79F73 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F147D30521F37BFD00C79F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F147D30621F37BFD00C79F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F147D30821F37BFD00C79F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1C83A88AF6CCD0E56B70BEA /* Pods-FancyWebRTCDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TG7LSJHB64;
+				INFOPLIST_FILE = FancyWebRTCDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.fitcom.FancyWebRTCDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F147D30921F37BFD00C79F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30E0E3998EBE9C68B80F52E3 /* Pods-FancyWebRTCDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TG7LSJHB64;
+				INFOPLIST_FILE = FancyWebRTCDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.fitcom.FancyWebRTCDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F147D30B21F37BFD00C79F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FancyWebRTCDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.fitcom.FancyWebRTCDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FancyWebRTCDemo.app/FancyWebRTCDemo";
+			};
+			name = Debug;
+		};
+		F147D30C21F37BFD00C79F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FancyWebRTCDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.fitcom.FancyWebRTCDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FancyWebRTCDemo.app/FancyWebRTCDemo";
+			};
+			name = Release;
+		};
+		F147D30E21F37BFD00C79F73 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FancyWebRTCDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.fitcom.FancyWebRTCDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FancyWebRTCDemo;
+			};
+			name = Debug;
+		};
+		F147D30F21F37BFD00C79F73 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FancyWebRTCDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.fitcom.FancyWebRTCDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FancyWebRTCDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F147D2DA21F37BFC00C79F73 /* Build configuration list for PBXProject "FancyWebRTCDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F147D30521F37BFD00C79F73 /* Debug */,
+				F147D30621F37BFD00C79F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F147D30721F37BFD00C79F73 /* Build configuration list for PBXNativeTarget "FancyWebRTCDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F147D30821F37BFD00C79F73 /* Debug */,
+				F147D30921F37BFD00C79F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F147D30A21F37BFD00C79F73 /* Build configuration list for PBXNativeTarget "FancyWebRTCDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F147D30B21F37BFD00C79F73 /* Debug */,
+				F147D30C21F37BFD00C79F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F147D30D21F37BFD00C79F73 /* Build configuration list for PBXNativeTarget "FancyWebRTCDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F147D30E21F37BFD00C79F73 /* Debug */,
+				F147D30F21F37BFD00C79F73 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F147D2D721F37BFC00C79F73 /* Project object */;
+}
