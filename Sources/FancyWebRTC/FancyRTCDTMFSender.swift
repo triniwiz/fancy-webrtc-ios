@@ -32,10 +32,7 @@
             
         }
         
-        
-        public func insertDTMF(tones: String, duration: Double?, interToneGap: Double?) {
-            let d = duration ?? 100.0
-            let i = interToneGap ?? 70.0;
-            _sender.insertDtmf(tones, duration: d, interToneGap: i)
+        public func insertDTMF(tones: String, duration: Double, interToneGap: Double) {
+            _sender.insertDtmf(tones, duration: duration, interToneGap: interToneGap)
         }
     }
