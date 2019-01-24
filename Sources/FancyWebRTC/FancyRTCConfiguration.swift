@@ -11,36 +11,78 @@ import WebRTC
 
 @objcMembers public class FancyRTCConfiguration: NSObject {
     private var _configuration: RTCConfiguration
+    public var peerIdentity: String {
+        set {
+            
+        }
+        get{
+            return ""
+        }
+    }
     public var bundlePolicy: FancyRTCBundlePolicy  {
         get {
             return FancyRTCBundlePolicy(policy: configuration.bundlePolicy)!
         }
-        set {}
+        set {
+            switch newValue {
+            case .BALANCED:
+                configuration.bundlePolicy = .balanced
+            case .MAX_BUNDLE:
+                configuration.bundlePolicy = .maxBundle
+            case .MAX_COMPAT:
+                configuration.bundlePolicy = .maxCompat
+            }
+        }
     }
     
     public var sdpSemantics: FancyRTCSdpSemantics {
         get {
             return FancyRTCSdpSemantics(sdpSemantics: configuration.sdpSemantics)!
         }
-        set {}
+        set {
+            switch newValue {
+            case .UNIFIED_PLAN:
+                configuration.sdpSemantics = .unifiedPlan
+            case .PLAN_B:
+                configuration.sdpSemantics = .planB
+            }
+        }
     }
     public var iceCandidatePoolSize: Int32 {
         get {
             return configuration.iceCandidatePoolSize
         }
-        set {}
+        set {
+            configuration.iceCandidatePoolSize = newValue
+        }
     }
     public var iceTransportPolicy: FancyRTCIceTransportPolicy {
         get {
             return FancyRTCIceTransportPolicy(policy: configuration.iceTransportPolicy)!
         }
-        set {}
+        set {
+            switch newValue {
+            case .ALL:
+                configuration.iceTransportPolicy  = .all
+            case .PUBLIC:
+                configuration.iceTransportPolicy  = .all
+            case .RELAY:
+                configuration.iceTransportPolicy  = .relay
+            }
+        }
     }
     public var rtcpMuxPolicy: FancyRTCRtcpMuxPolicy {
         get {
             return FancyRTCRtcpMuxPolicy(policy: configuration.rtcpMuxPolicy)!
         }
-        set {}
+        set {
+            switch newValue {
+            case .NEGOTIATE:
+                configuration.rtcpMuxPolicy = .negotiate
+            case .REQUIRE:
+                configuration.rtcpMuxPolicy = .require
+            }
+        }
     }
     public var iceServers: Array<FancyRTCIceServer> {
         get {
@@ -50,7 +92,11 @@ import WebRTC
             }
             return servers
         }
-        set {}
+        set {
+            for server in newValue{
+                configuration.iceServers.append(server.iceServer())
+            }
+        }
     }
     public var configuration: RTCConfiguration {
         get{
