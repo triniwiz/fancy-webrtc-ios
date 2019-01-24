@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCConfiguration)
-public class FancyRTCConfiguration: NSObject {
+
+@objcMembers public class FancyRTCConfiguration: NSObject {
     private var _configuration: RTCConfiguration
     public var bundlePolicy: FancyRTCBundlePolicy  {
         get {

@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCRtpSender)
-public class FancyRTCRtpSender: NSObject {
+
+@objcMembers public class FancyRTCRtpSender: NSObject {
     private var _sender: RTCRtpSender
     
     public init(sender:RTCRtpSender) {

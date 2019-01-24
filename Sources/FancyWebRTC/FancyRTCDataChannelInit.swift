@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCDataChannelInit)
-public class FancyRTCDataChannelInit: NSObject, Decodable, Encodable {
+
+@objcMembers public class FancyRTCDataChannelInit: NSObject, Decodable, Encodable {
     private var _ordered: Bool = true;
     private var _maxPacketLifeTime: Int32
     private var _maxRetransmits: Int32

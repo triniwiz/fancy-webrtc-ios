@@ -10,8 +10,8 @@ import Foundation
 import AVFoundation
 import WebRTC
 
-@objc public class AVCaptureState: NSObject {
-    @objc public static func isVideoDisabled() -> Bool {
+@objcMembers public class AVCaptureState: NSObject {
+    public static func isVideoDisabled() -> Bool {
         let status = AVCaptureDevice.authorizationStatus(
             for: AVMediaType.video
         );
@@ -21,7 +21,7 @@ import WebRTC
         );
     }
     
-    @objc public static func isAudioDisabled() -> Bool {
+    public static func isAudioDisabled() -> Bool {
         let status = AVCaptureDevice.authorizationStatus(
             for: AVMediaType.video
         );
@@ -76,7 +76,7 @@ import WebRTC
     var  sdp: String {get set}
 }
 
-@objc public protocol WebRTCSdp {
+@objc  public protocol WebRTCSdp {
     var type: WebRTCSdpType {get set}
     var sdp: String {get set}
 }
@@ -242,7 +242,7 @@ import WebRTC
     }
 }
 
-@objc public class IceServer: NSObject {
+@objcMembers public class IceServer: NSObject {
     var username: String?
     var password: String?
     var urls: NSArray?
@@ -298,8 +298,8 @@ import WebRTC
     }
 }
 
-@objc(FancyWebRTCClientDelegate)
-public protocol FancyWebRTCClientDelegate {
+
+@objc public protocol FancyWebRTCClientDelegate {
     func webRTCClientOnRemoveStream(client: FancyWebRTC, stream: RTCMediaStream)
     func webRTCClientDataChannelStateChanged(
         client: FancyWebRTC,
@@ -374,7 +374,7 @@ public protocol FancyWebRTCClientDelegate {
     )
 }
 
-@objc public class MediaData: NSObject {
+public class MediaData: NSObject {
     public var mediaSource: Any
     public var track: Any
     public var capturer: WebRTCCapturer?
@@ -386,8 +386,7 @@ public protocol FancyWebRTCClientDelegate {
 }
 
 
-@objc(FancyWebRTC)
-public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDelegate{
+@objcMembers public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDelegate{
     var connection: RTCPeerConnection?
     var configuration: RTCConfiguration?
     var remoteTracks: Array<Any>?
@@ -504,7 +503,7 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
         }
     }
     
-    @objc public static func requestPermissions(callback:@escaping (String?) -> Void){
+    public static func requestPermissions(callback:@escaping (String?) -> Void){
         requestCameraPermission { (videoError) in
             if(videoError != nil){
                 callback(videoError)
@@ -520,7 +519,7 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
         }
     }
     
-    @objc public func makeOffer() {
+    public func makeOffer() {
         if (connection == nil) {return}
         connection?.offer(for: constraints!, completionHandler: { (sdp, error) in
             if(error != nil && self.delegate != nil){
@@ -531,10 +530,9 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
         })
     }
     
-    @objc public func handleAnswerReceived(answer: WebRTCSdp?) {
-        if (connection == nil || answer == nil) {return}
-        
-        let sessionDescription = RTCSessionDescription(type: RTCSdpType.answer, sdp: answer!.sdp)
+
+    public func handleAnswerReceived(answer: WebRTCSdp) {
+        let sessionDescription = RTCSessionDescription(type: RTCSdpType.answer, sdp: answer.sdp)
         connection?.setRemoteDescription(sessionDescription, completionHandler: { (error) in
             if (error != nil) {
                 self.delegate?.webRTCClientDidReceiveError(client: self, error: error! as NSError);
@@ -544,7 +542,7 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
         })
     }
     
-    @objc  public func addIceCandidate(iceCandidate: WebRTCIceCandidate) {
+    public func addIceCandidate(iceCandidate: WebRTCIceCandidate) {
         let nativeIceCandidate = RTCIceCandidate(sdp: iceCandidate.sdp, sdpMLineIndex: Int32(iceCandidate.sdpMLineIndex), sdpMid: iceCandidate.sdpMid)
         
         if (connection != nil && ((connection?.remoteDescription) != nil)) {
@@ -555,7 +553,7 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
     }
     
     
-    @objc  public  func createAnswerForOfferReceived(sdp: WebRTCSdp?) {
+    public func createAnswerForOfferReceived(sdp: WebRTCSdp?) {
         if (connection == nil || sdp == nil) {return;}
         let sessionDescription = RTCSessionDescription(type: .offer, sdp: sdp!.sdp)
         connection?.setRemoteDescription(sessionDescription, completionHandler: { (error) in
@@ -597,28 +595,28 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
     }
     
     
-    @objc public func connect() {
+    public func connect() {
         if (connection == nil) {return}
         connection = connectionFactory?.peerConnection(with: configuration!, constraints: defaultConnectionConstraints!, delegate: self)
     }
     
-    @objc public func disconnect() {
+    public func disconnect() {
         if (connection == nil) {return;}
         connection?.close();
     }
     
-    @objc public func addLocalStream(stream: RTCMediaStream) {
+    public func addLocalStream(stream: RTCMediaStream) {
         if (connection == nil) {return;}
         connection?.add(stream)
         localStreams[stream.streamId] = stream
     }
     
-    @objc public func addRemoteStream(stream: RTCMediaStream) {
+    public func addRemoteStream(stream: RTCMediaStream) {
         remoteStreams[stream.streamId]  = stream;
     }
     
     
-    @objc public func dataChannelSend(name: String, data: String, type: WebRTCDataChannelMessageType) {
+    public func dataChannelSend(name: String, data: String, type: WebRTCDataChannelMessageType) {
         let channel = dataChannels[name];
         if (channel != nil) {
             var isBinary: Bool = false
@@ -638,14 +636,14 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
         }
     }
     
-    @objc public func dataChannelClose(name: String) {
+    public func dataChannelClose(name: String) {
         let channel = dataChannels[name];
         if (channel != nil) {
             channel!.close()
         }
     }
     
-    @objc public func dataChannelCreate(name: String) {
+   public func dataChannelCreate(name: String) {
         let config = RTCDataChannelConfiguration();
         let channel = connection?.dataChannel(forLabel: name, configuration: config)
         dataChannels[name] = channel
@@ -653,25 +651,25 @@ public class FancyWebRTC: NSObject , RTCDataChannelDelegate, RTCPeerConnectionDe
     }
     
     
-    @objc public func switchCamera(trackId: String) {
+    public func switchCamera(trackId: String) {
         let mediaData = tracks[trackId];
         if (mediaData != nil && mediaData!.capturer != nil) {
             mediaData?.capturer?.toggleCamera();
         }
     }
     
-    @objc private func registerDataChannelDelegate(name: String) {
+    private func registerDataChannelDelegate(name: String) {
         let channel = dataChannels[name]
         if (channel != nil) {
             channel!.delegate = self
         }
     }
     
-    @objc private func getRandomId() -> String {
+    private func getRandomId() -> String {
         return NSUUID().uuidString;
     }
     
-    @objc private func getUserMedia(quality: Quality, callback:@escaping (RTCMediaStream?, String?) -> Void) {
+    private func getUserMedia(quality: Quality, callback:@escaping (RTCMediaStream?, String?) -> Void) {
         let factory = connectionFactory!;
         let streamId = getRandomId();
         let localStream = factory.mediaStream(withStreamId: streamId)

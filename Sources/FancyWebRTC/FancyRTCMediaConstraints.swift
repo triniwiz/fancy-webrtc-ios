@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCMediaConstraints)
-public class FancyRTCMediaConstraints: NSObject, Encodable, Decodable {
+
+@objcMembers public class FancyRTCMediaConstraints: NSObject, Encodable, Decodable {
     
     public class KeyValue: NSObject, Encodable, Decodable {
         var key: String

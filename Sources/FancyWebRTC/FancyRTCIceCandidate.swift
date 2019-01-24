@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCIceCandidate)
-public class FancyRTCIceCandidate: NSObject{
+
+@objcMembers public class FancyRTCIceCandidate: NSObject{
     
     private var _candidate: String
     private var _sdpMid: String?

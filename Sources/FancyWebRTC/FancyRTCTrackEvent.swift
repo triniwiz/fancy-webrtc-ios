@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCTrackEvent)
-public class FancyRTCTrackEvent: NSObject {
+
+@objcMembers public class FancyRTCTrackEvent: NSObject {
     private var _receiver: FancyRTCRtpReceiver
     private var _streams: Array<FancyRTCMediaStream>
     private var _mediaTrack: FancyRTCMediaStreamTrack?

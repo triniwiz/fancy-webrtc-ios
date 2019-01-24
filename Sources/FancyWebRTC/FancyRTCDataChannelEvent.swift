@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCDataChannelEvent)
-public class FancyRTCDataChannelEvent: NSObject {
+
+@objcMembers public class FancyRTCDataChannelEvent: NSObject {
     public var _channel:FancyRTCDataChannel
     
     public init(channel: FancyRTCDataChannel) {

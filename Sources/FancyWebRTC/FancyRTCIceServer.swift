@@ -9,8 +9,8 @@
 import Foundation
 import WebRTC
 
-@objc(FancyRTCIceServer)
-public class FancyRTCIceServer: NSObject {
+
+@objcMembers public class FancyRTCIceServer: NSObject {
     
     private var urls: Array<String>
     private var credential: String?

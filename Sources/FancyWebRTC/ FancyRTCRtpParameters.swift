@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCRtpParameters)
-public class  FancyRTCRtpParameters:NSObject {
+
+@objcMembers public class  FancyRTCRtpParameters:NSObject {
     private var _parameters: RTCRtpParameters
     
     public init(parameters: RTCRtpParameters) {

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-@objc(FancyUtils)
-public class FancyUtils: NSObject {
+
+@objcMembers public class FancyUtils: NSObject {
     public static func getUUID() -> String {
     return UUID().uuidString
     }

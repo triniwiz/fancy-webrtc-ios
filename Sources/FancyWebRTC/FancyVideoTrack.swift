@@ -9,8 +9,8 @@
 import Foundation
 import WebRTC
 
-@objc(FancyRTCVideoTrack)
-public class FancyRTCVideoTrack: FancyRTCMediaStreamTrack {
+
+@objcMembers public class FancyRTCVideoTrack: FancyRTCMediaStreamTrack {
     private var _videoTrack: RTCVideoTrack
     init(track: RTCVideoTrack) {
         _videoTrack = track

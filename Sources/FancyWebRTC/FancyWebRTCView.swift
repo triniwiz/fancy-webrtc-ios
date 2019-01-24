@@ -8,18 +8,18 @@
 
 import Foundation
 import WebRTC
-@objc(FancyWebRTCView)
-public class FancyWebRTCView: RTCEAGLVideoView {
+
+@objcMembers public class FancyWebRTCView: RTCEAGLVideoView {
     private var mirror: Bool = false
-    private var stream: RTCMediaStream?
     private var track: RTCVideoTrack?
+    private var mediaStream: RTCMediaStream?
     
-   
-    @objc public static func initWithFrame(_ frame: CGRect )-> FancyWebRTCView {
+    
+    public static func initWithFrame(_ frame: CGRect )-> FancyWebRTCView {
         return FancyWebRTCView(frame: frame)
     }
     
-    @objc public func setMirror(mirror: Bool){
+    public func setMirror(mirror: Bool){
         if (self.mirror) {
             self.mirror = true
             self.transform = CGAffineTransform(scaleX: -1.0, y: 1.0);
@@ -29,19 +29,43 @@ public class FancyWebRTCView: RTCEAGLVideoView {
         }
     }
     
-    @objc public func setVideoTrack(track: RTCVideoTrack?){
+    public func setVideoTrack(track: RTCVideoTrack?){
         self.track = track;
         if (track != nil) {
             track!.add(self);
         }
     }
     
-    @objc public func setStream(stream: RTCMediaStream?){
-        self.stream = stream;
-        if (stream != nil && (stream!.videoTracks.first != nil)) {
-            track = stream!.videoTracks.first
+    
+    public func setSrcObject(stream: FancyRTCMediaStream) {
+        if (self.mediaStream != nil) {
+            mediaStream = stream.stream
+            if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
+                let track = mediaStream!.videoTracks.first
+                if (self.track != nil) {
+                    self.track = nil
+                }
+                self.track = track
+                if(self.track != nil){
+                    self.track?.add(self)
+                }
+            }
         }
     }
     
-    @objc public func setSrcObject(){}
+    public func setSrcObject(with rtcStream: RTCMediaStream) {
+        if (self.mediaStream != nil) {
+            mediaStream = rtcStream
+            if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
+                let track = mediaStream!.videoTracks.first
+                if (self.track != nil) {
+                   self.track = nil
+                }
+                self.track = track;
+                if(self.track != nil){
+                    self.track?.add(self)
+                }
+            }
+        }
+    }
 }

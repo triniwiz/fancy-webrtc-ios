@@ -9,8 +9,7 @@
 import Foundation
 import WebRTC
 
-@objc(FancyRTCPeerConnection)
-public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate{
+@objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate{
     var _connection: RTCPeerConnection?
     var configuration: FancyRTCConfiguration
     var factory: RTCPeerConnectionFactory

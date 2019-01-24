@@ -8,8 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc(FancyRTCAudioTrack)
-public class FancyRTCAudioTrack: FancyRTCMediaStreamTrack {
+
+@objcMembers public class FancyRTCAudioTrack: FancyRTCMediaStreamTrack {
     private var _audioTrack: RTCAudioTrack
     init(track: RTCAudioTrack) {
         _audioTrack = track
