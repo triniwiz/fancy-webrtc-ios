@@ -11,7 +11,7 @@ import WebRTC
 
 @objcMembers public class FancyRTCAudioTrack: FancyRTCMediaStreamTrack {
     private var _audioTrack: RTCAudioTrack
-    init(track: RTCAudioTrack) {
+    init(_ track: RTCAudioTrack) {
         _audioTrack = track
         super.init(track: track)
     }

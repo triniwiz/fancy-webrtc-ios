@@ -9,38 +9,38 @@
 import Foundation
 import WebRTC
 
-@objcMembers public class FancyRTCMediaStreamTrack: NSObject {
+public class FancyRTCMediaStreamTrack: NSObject {
     private var _mediaStreamTrack: RTCMediaStreamTrack
     
     
-    public init(track: RTCMediaStreamTrack){
+    @nonobjc public init(track: RTCMediaStreamTrack){
         self._mediaStreamTrack = track
     }
     
     public var id: String {
         get{
-            return _mediaStreamTrack.trackId
+            return (_mediaStreamTrack ).trackId
         }
     }
     
     public var enabled: Bool {
         get{
-            return _mediaStreamTrack.isEnabled
+            return (_mediaStreamTrack ).isEnabled
         }
         set{
-            _mediaStreamTrack.isEnabled = newValue
+            (_mediaStreamTrack ).isEnabled = newValue
         }
     }
     
     public var kind: String {
         get {
-            return _mediaStreamTrack.kind
+            return (_mediaStreamTrack ).kind
         }
     }
     
     public var mute: Bool {
         get{
-            return _mediaStreamTrack.isEnabled
+            return (_mediaStreamTrack ).isEnabled
         }
     }
     
@@ -50,7 +50,7 @@ import WebRTC
     
     public var  readyState: String {
         get {
-            switch (_mediaStreamTrack.readyState) {
+            switch ((_mediaStreamTrack ).readyState) {
             case .live:
                 return "live"
             default:
@@ -61,7 +61,7 @@ import WebRTC
     
     public var mediaStreamTrack: RTCMediaStreamTrack {
         get {
-            return _mediaStreamTrack
+            return (_mediaStreamTrack )
         }
     }
 }
