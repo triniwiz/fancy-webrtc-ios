@@ -80,6 +80,25 @@ import WebRTC
         
     }
     
+    public init(iceServers:Array<FancyRTCIceServer>){
+        _configuration = RTCConfiguration()
+        
+        super.init()
+        
+        for server in iceServers{
+            configuration.iceServers.append(server.iceServer())
+        }
+        
+        // configuration.enableDtlsSrtp = true;
+        // configuration.enableRtpDataChannel = true;
+        
+        configuration.tcpCandidatePolicy = .disabled
+        configuration.bundlePolicy = .maxBundle
+        configuration.rtcpMuxPolicy = .require
+        configuration.continualGatheringPolicy = .gatherContinually
+        configuration.keyType = .ECDSA
+    }
+    
     public init(options: NSDictionary) {
         _configuration = RTCConfiguration()
         super.init()
