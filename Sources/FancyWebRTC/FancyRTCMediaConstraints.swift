@@ -11,12 +11,12 @@ import WebRTC
 
 @objcMembers public class FancyRTCMediaConstraints: NSObject, Encodable, Decodable {
     
-   @objcMembers public class KeyValue: NSObject, Encodable, Decodable {
+    @objcMembers public class KeyValue: NSObject, Encodable, Decodable {
         var key: String
         var value: String
         public init(key: String, value: String) {
-        self.key = key;
-        self.value = value;
+            self.key = key;
+            self.value = value;
         }
     }
     
