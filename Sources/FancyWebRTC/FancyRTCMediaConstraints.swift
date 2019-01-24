@@ -11,7 +11,7 @@ import WebRTC
 
 @objcMembers public class FancyRTCMediaConstraints: NSObject, Encodable, Decodable {
     
-    @objc public class KeyValue: NSObject, Encodable, Decodable {
+    @objc public class FancyRTCKeyValue: NSObject, Encodable, Decodable {
         var key: String
         var value: String
         @objc public init(key: String, value: String) {
@@ -21,16 +21,16 @@ import WebRTC
     }
     
     class MediaConstraints: Encodable, Decodable{
-        public var  mandatory: Array<KeyValue>
-        public var optional: Array<KeyValue>
-        init(mandatory: Array<KeyValue>, optional: Array<KeyValue>) {
+        public var  mandatory: Array<FancyRTCKeyValue>
+        public var optional: Array<FancyRTCKeyValue>
+        init(mandatory: Array<FancyRTCKeyValue>, optional: Array<FancyRTCKeyValue>) {
             self.mandatory = mandatory
             self.optional = optional
         }
     }
     
-    public var  mandatory: Array<KeyValue> = []
-    public var optional: Array<KeyValue>  = []
+    public var  mandatory: Array<FancyRTCKeyValue> = []
+    public var optional: Array<FancyRTCKeyValue>  = []
     
     public override init() {}
     
