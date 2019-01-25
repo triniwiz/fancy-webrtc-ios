@@ -19,6 +19,7 @@ import WebRTC
     }
     
     public var getId: String{
+        NSLog("FancyRTCMediaStream getId %@", _mediaStream.streamId)
         return _mediaStream.streamId
     }
     
@@ -28,6 +29,7 @@ import WebRTC
         for track in tracks {
             fancyVideoTracks.append(FancyRTCVideoTrack(track));
         }
+        NSLog("FancyRTCMediaStream videoTracks %@", fancyVideoTracks)
         return fancyVideoTracks;
     }
     
@@ -37,6 +39,7 @@ import WebRTC
         for track in tracks {
             fancyAudioTracks.append(FancyRTCAudioTrack(track));
         }
+        NSLog("FancyRTCMediaStream audioTracks %@", fancyAudioTracks)
         return fancyAudioTracks;
     }
     
@@ -57,6 +60,7 @@ import WebRTC
     }
     
     public var stream: RTCMediaStream {
+        NSLog("FancyRTCMediaStream stream %@", _mediaStream)
        return _mediaStream
     }
 }
