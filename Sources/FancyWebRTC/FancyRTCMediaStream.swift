@@ -9,21 +9,21 @@
 import Foundation
 import WebRTC
 
-@objc public class FancyRTCMediaStream: NSObject {
+@objcMembers public class FancyRTCMediaStream: NSObject {
     
     private var _mediaStream: RTCMediaStream
     
-    @objc public init(mediaStream: RTCMediaStream) {
+    public init(mediaStream: RTCMediaStream) {
         self._mediaStream = mediaStream
     }
     
-    @objc public var getId: String{
+    public var getId: String{
         get{
             return self._mediaStream.streamId
         }
     }
     
-    @objc public var videoTracks: Array<FancyRTCVideoTrack> {
+    public var videoTracks: Array<FancyRTCVideoTrack> {
         get{
             let tracks: Array<RTCVideoTrack> = _mediaStream.videoTracks;
             var fancyVideoTracks: Array<FancyRTCVideoTrack> = []
@@ -34,7 +34,7 @@ import WebRTC
         }
     }
     
-    @objc  public var audioTracks: Array<FancyRTCAudioTrack> {
+    public var audioTracks: Array<FancyRTCAudioTrack> {
         get{
             let tracks: Array<RTCAudioTrack> = _mediaStream.audioTracks
             var fancyAudioTracks: Array<FancyRTCAudioTrack> = []
@@ -45,23 +45,23 @@ import WebRTC
         }
     }
     
-    @objc public func addTrack(video track: FancyRTCVideoTrack) {
+    public func addTrack(video track: FancyRTCVideoTrack) {
         _mediaStream.addVideoTrack(track.videoTrack)
     }
     
-    @objc public func addTrack(audio track: FancyRTCAudioTrack) {
+    public func addTrack(audio track: FancyRTCAudioTrack) {
         _mediaStream.addAudioTrack(track.audioTrack)
     }
     
-    @objc public func removeTrack(video track: FancyRTCVideoTrack) {
+    public func removeTrack(video track: FancyRTCVideoTrack) {
         _mediaStream.removeVideoTrack(track.videoTrack)
     }
     
-    @objc public func removeTrack(audio track: FancyRTCAudioTrack) {
+    public func removeTrack(audio track: FancyRTCAudioTrack) {
         _mediaStream.removeAudioTrack(track.audioTrack)
     }
     
-    @objc public var stream: RTCMediaStream {
+    public var stream: RTCMediaStream {
         get{
             print("testing", _mediaStream, self._mediaStream)
             return self._mediaStream

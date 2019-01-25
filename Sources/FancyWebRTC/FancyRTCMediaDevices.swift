@@ -19,7 +19,7 @@ import WebRTC
         case audioPermissionDenied = "Audio permission denied"
     }
     
-   @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,listener: @escaping ((FancyRTCMediaStream?, String?) -> Void)){
+    @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,listener: @escaping ((_ stream : FancyRTCMediaStream?, _ error : String?) -> Void)){
         let factory = FancyRTCPeerConnection.factory
         let streamId = UUID().uuidString
         let localStream = factory.mediaStream(withStreamId: streamId)
@@ -129,7 +129,7 @@ import WebRTC
             let fps = selectFpsForFormat(format: format);
             
             capturer.startCapture(with: selectedDevice!, format: format, fps: Int(fps))
-            localStream.addVideoTrack(videoTrack);
+            localStream.addVideoTrack(videoTrack)
         } else {
             listener(nil,ErrorDomain.videoPermissionDenied.rawValue)
             return
@@ -145,7 +145,7 @@ import WebRTC
             listener(nil,ErrorDomain.audioPermissionDenied.rawValue)
             return
         }
-    
+        
         listener(FancyRTCMediaStream(mediaStream: localStream),nil)
     }
     
