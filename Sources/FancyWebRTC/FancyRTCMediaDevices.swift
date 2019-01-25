@@ -147,7 +147,7 @@ import WebRTC
             return
         }
         
-        listener(FancyRTCMediaStream.init(mediaStream: localStream),nil)
+        listener(FancyRTCMediaStream(mediaStream: localStream),nil)
         
     }
     
