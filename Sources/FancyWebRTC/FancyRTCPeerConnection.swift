@@ -23,6 +23,7 @@ import WebRTC
             "OfferToReceiveVideo": "true","OfferToReceiveAudio":"true"], optionalConstraints: nil), delegate: nil)
         super.init()
         _connection!.delegate = self
+        FancyRTCMediaDevices.factory = factory
     }
     
     public init(config: FancyRTCConfiguration) {
@@ -34,6 +35,7 @@ import WebRTC
             "OfferToReceiveVideo": "true","OfferToReceiveAudio":"true"], optionalConstraints: nil), delegate: nil)
         super.init()
         _connection!.delegate = self
+        FancyRTCMediaDevices.factory = factory
     }
     
     public var localDescription: FancyRTCSessionDescription? {
