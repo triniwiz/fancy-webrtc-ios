@@ -10,21 +10,22 @@ import Foundation
 import WebRTC
 
 @objcMembers public class FancyRTCMediaStream: NSObject {
+    
     private var _mediaStream: RTCMediaStream
     
     public init(mediaStream: RTCMediaStream) {
-        _mediaStream = mediaStream
+        self._mediaStream = mediaStream
     }
     
     public var getId: String{
         get{
-            return _mediaStream.streamId
+            return self._mediaStream.streamId
         }
     }
     
     public var videoTracks: Array<FancyRTCVideoTrack> {
         get{
-            let tracks: Array<RTCVideoTrack> = stream.videoTracks;
+            let tracks: Array<RTCVideoTrack> = _mediaStream.videoTracks;
             var fancyVideoTracks: Array<FancyRTCVideoTrack> = []
             for track in tracks {
                 fancyVideoTracks.append(FancyRTCVideoTrack(track));
@@ -62,7 +63,8 @@ import WebRTC
     
     public var stream: RTCMediaStream {
         get{
-            return _mediaStream
+            print("testing", _mediaStream, self._mediaStream)
+            return self._mediaStream
         }
     }
 }
