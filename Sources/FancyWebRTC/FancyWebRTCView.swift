@@ -38,33 +38,29 @@ import WebRTC
     
     
     public func setSrcObject(stream: FancyRTCMediaStream) {
-        if (self.mediaStream != nil) {
-            mediaStream = stream.stream
-            if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
-                let track = mediaStream!.videoTracks.first
-                if (self.track != nil) {
-                    self.track = nil
-                }
-                self.track = track
-                if(self.track != nil){
-                    self.track?.add(self)
-                }
+        mediaStream = stream.stream
+        if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
+            let track = mediaStream!.videoTracks.first
+            if (self.track != nil) {
+                self.track = nil
+            }
+            self.track = track
+            if(self.track != nil){
+                self.track?.add(self)
             }
         }
     }
     
     public func setSrcObject(with rtcStream: RTCMediaStream) {
-        if (self.mediaStream != nil) {
-            mediaStream = rtcStream
-            if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
-                let track = mediaStream!.videoTracks.first
-                if (self.track != nil) {
-                   self.track = nil
-                }
-                self.track = track;
-                if(self.track != nil){
-                    self.track?.add(self)
-                }
+        mediaStream = rtcStream
+        if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
+            let track = mediaStream!.videoTracks.first
+            if (self.track != nil) {
+                self.track = nil
+            }
+            self.track = track;
+            if(self.track != nil){
+                self.track?.add(self)
             }
         }
     }
