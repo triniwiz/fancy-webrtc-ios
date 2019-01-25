@@ -129,7 +129,6 @@ import WebRTC
             let fps = selectFpsForFormat(format: format);
             
             capturer.startCapture(with: selectedDevice!, format: format, fps: Int(fps))
-            
             localStream.addVideoTrack(videoTrack);
         } else {
             listener(nil,ErrorDomain.videoPermissionDenied.rawValue)
@@ -146,8 +145,6 @@ import WebRTC
             listener(nil,ErrorDomain.audioPermissionDenied.rawValue)
             return
         }
-    
-        print("isMainThread",Thread.current.isMainThread , "currentThread" ,Thread.current.name ?? "")
     
         listener(FancyRTCMediaStream(mediaStream: localStream),nil)
     }

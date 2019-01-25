@@ -88,9 +88,9 @@ import WebRTC
         }
     }
     
-    private var onTrackListener: ((FancyRTCTrackEvent) -> Void)?
+    private var onTrackListener: ((_ track :FancyRTCTrackEvent) -> Void)?
     
-    public var onTrack:((FancyRTCTrackEvent) -> Void)? {
+    public var onTrack:((_ track :FancyRTCTrackEvent) -> Void)? {
         get {
             return onTrackListener
         }
@@ -110,9 +110,9 @@ import WebRTC
         }
     }
     
-    private var onRemoveStreamListener:((FancyRTCMediaStream) -> Void)?
+    private var onRemoveStreamListener:((_ stream:FancyRTCMediaStream) -> Void)?
     
-    public var onRemoveStream:((FancyRTCMediaStream) -> Void)? {
+    public var onRemoveStream:((_ stream:FancyRTCMediaStream) -> Void)? {
         get {
             return onRemoveStreamListener
         }
@@ -135,9 +135,9 @@ import WebRTC
     }
     
     
-    private var onAddStreamListener:((FancyRTCMediaStream)->Void)?
+    private var onAddStreamListener:((_ stream: FancyRTCMediaStream)->Void)?
     
-    public var onAddStream:((FancyRTCMediaStream)->Void)? {
+    public var onAddStream:((_ stream:FancyRTCMediaStream)->Void)? {
         get {
             return onAddStreamListener
         }
@@ -169,9 +169,9 @@ import WebRTC
         }
     }
     
-    private var onIceCandidateListener:((FancyRTCIceCandidate)->Void)?
+    private var onIceCandidateListener:((_ candidate: FancyRTCIceCandidate)->Void)?
     
-    public var onIceCandidate:((FancyRTCIceCandidate)->Void)? {
+    public var onIceCandidate:((_ candidate: FancyRTCIceCandidate)->Void)? {
         get {
             return onIceCandidateListener
         }
@@ -181,9 +181,9 @@ import WebRTC
     }
     
     
-    private var onDataChannelListener:((FancyRTCDataChannelEvent)->Void)?
+    private var onDataChannelListener:((_ event: FancyRTCDataChannelEvent)->Void)?
     
-    public var onDataChannel:((FancyRTCDataChannelEvent)->Void)? {
+    public var onDataChannel:((_ event: FancyRTCDataChannelEvent)->Void)? {
         get{
             return onDataChannelListener
         }
