@@ -8,7 +8,7 @@
 
 import Foundation
 import WebRTC
-@objcMembers public class FancyRTCMediaDevices: NSObject {
+@objc public class FancyRTCMediaDevices: NSObject {
     static var factory: RTCPeerConnectionFactory?
     private static let DEFAULT_HEIGHT = 480;
     private static let DEFAULT_WIDTH = 640;
@@ -20,7 +20,7 @@ import WebRTC
         case audioPermissionDenied = "Audio permission denied"
     }
     
-   @objc static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,listener: ((FancyRTCMediaStream?, String?) -> Void)){
+   @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,listener: ((FancyRTCMediaStream?, String?) -> Void)){
         let factory = FancyRTCMediaDevices.factory!
         let streamId = UUID().uuidString
         let localStream = factory.mediaStream(withStreamId: streamId)
@@ -152,7 +152,7 @@ import WebRTC
         
     }
     
-   @objc private static func selectFormatForDevice(
+   @objc public static func selectFormatForDevice(
         device: AVCaptureDevice,
         width: Int32,
         height: Int32,
@@ -187,7 +187,7 @@ import WebRTC
         return selectedFormat!
     }
     
-   @objc private static func selectFpsForFormat(format: AVCaptureDevice.Format) -> Double {
+   @objc public static func selectFpsForFormat(format: AVCaptureDevice.Format) -> Double {
         var maxFrameRate = 0.0
         for fpsRange in format.videoSupportedFrameRateRanges{
             maxFrameRate = fmax(maxFrameRate, fpsRange.maxFrameRate);
