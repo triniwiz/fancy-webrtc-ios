@@ -152,7 +152,7 @@ import WebRTC
         
     }
     
-    private static func selectFormatForDevice(
+   @objc private static func selectFormatForDevice(
         device: AVCaptureDevice,
         width: Int32,
         height: Int32,
@@ -187,7 +187,7 @@ import WebRTC
         return selectedFormat!
     }
     
-    private static func selectFpsForFormat(format: AVCaptureDevice.Format) -> Double {
+   @objc private static func selectFpsForFormat(format: AVCaptureDevice.Format) -> Double {
         var maxFrameRate = 0.0
         for fpsRange in format.videoSupportedFrameRateRanges{
             maxFrameRate = fmax(maxFrameRate, fpsRange.maxFrameRate);
