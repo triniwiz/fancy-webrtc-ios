@@ -12,74 +12,84 @@ import WebRTC
 
 @objcMembers public class FancyRTCIceServer: NSObject {
     
-    private var urls: Array<String>
-    private var credential: String?
-    private var credentialType: FancyRTCIceCredentialType?
-    private var username: String?
-    private var server: RTCIceServer?
+    private var _urls: Array<String>
+    private var _credential: String?
+    private var _credentialType: FancyRTCIceCredentialType?
+    private var _username: String?
+    private var _server: RTCIceServer?
     
-    private override init(){
-        urls = []
-        super.init()
-    }
     
     public init(url: String) {
-        urls = [url];
+        _urls = [url];
     }
     
     public init(url: String, username: String?,credential: String?) {
-        urls = [url]
-        self.username = username
-        self.credential = credential
+        _urls = [url]
+        _username = username
+        _credential = credential
     }
     
     public init(urls: [String]) {
-        self.urls = urls;
+        _urls = urls;
     }
     
     public init(urls:[String], username: String?, credential: String?) {
-        self.urls = urls;
-        self.username = username;
-        self.credential = credential;
+        _urls = urls;
+        _username = username;
+        _credential = credential;
     }
     
     public init(iceServer: RTCIceServer){
-        server = iceServer
-        urls = iceServer.urlStrings
-        credential = iceServer.credential
-        username = iceServer.username
+        _server = iceServer
+        _urls = iceServer.urlStrings
+        _credential = iceServer.credential
+        _username = iceServer.username
     }
     
-    @objc public func toWebRtc() -> RTCIceServer{
+    public func toWebRtc() -> RTCIceServer{
         return iceServer()
     }
     
-    @objc public func iceServer() -> RTCIceServer{
-        return RTCIceServer(urlStrings: self.urls, username: self.username, credential: self.credential)
+    public func iceServer() -> RTCIceServer{
+        return RTCIceServer(urlStrings: _urls, username: _username, credential: _credential)
     }
     
-    @objc public func setCredentialType(credentialType: FancyRTCIceCredentialType) {
-        self.credentialType = credentialType
+    public var credentialType: FancyRTCIceCredentialType? {
+        get {
+            return _credentialType
+        }
+        set {
+            _credentialType = newValue
+        }
     }
     
-    public func getCredentialType() -> FancyRTCIceCredentialType? {
-        return credentialType
+    public var urls :[String] {
+        get {
+            return _urls
+        }
+        
+        set{
+            _urls = newValue
+        }
     }
     
-    public func setUrls(urls: [String]) {
-        self.urls = urls
+    public var username:String? {
+        get{
+            return _username
+        }
+        set {
+            _username = newValue
+        }
     }
     
-    public func getUrls() -> [String] {
-        return urls
+    public var credential: String? {
+        get{
+            return _credential
+        }
+        set {
+            _credential = newValue
+        }
     }
     
-    public  func getUsername() -> String? {
-        return username
-    }
-    
-    public func setUsername(username: String) {
-        self.username = username
-    }
     
 }
