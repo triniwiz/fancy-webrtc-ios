@@ -9,7 +9,7 @@
 import Foundation
 import WebRTC
 
-@objcMembers public class FancyRTCMediaStream: NSObject {
+@objc public class FancyRTCMediaStream: NSObject {
     
     private var _mediaStream: RTCMediaStream
     
@@ -18,12 +18,17 @@ import WebRTC
         NSLog("FancyRTCMediaStream %@", mediaStream)
     }
     
-    public var getId: String{
+   @objc public var getId: String{
         NSLog("FancyRTCMediaStream getId %@", _mediaStream.streamId)
         return _mediaStream.streamId
     }
     
-    public var videoTracks: Array<FancyRTCVideoTrack> {
+   @objc public var id: String{
+        NSLog("FancyRTCMediaStream getId %@", _mediaStream.streamId)
+        return _mediaStream.streamId
+    }
+    
+    @objc public var videoTracks: Array<FancyRTCVideoTrack> {
         let tracks: Array<RTCVideoTrack> = _mediaStream.videoTracks;
         var fancyVideoTracks: Array<FancyRTCVideoTrack> = []
         for track in tracks {
@@ -33,7 +38,7 @@ import WebRTC
         return fancyVideoTracks;
     }
     
-    public var audioTracks: Array<FancyRTCAudioTrack> {
+   @objc public var audioTracks: Array<FancyRTCAudioTrack> {
         let tracks: Array<RTCAudioTrack> = _mediaStream.audioTracks
         var fancyAudioTracks: Array<FancyRTCAudioTrack> = []
         for track in tracks {
@@ -43,23 +48,23 @@ import WebRTC
         return fancyAudioTracks;
     }
     
-    public func addTrack(video track: FancyRTCVideoTrack) {
+   @objc public func addTrack(video track: FancyRTCVideoTrack) {
         _mediaStream.addVideoTrack(track.videoTrack)
     }
     
-    public func addTrack(audio track: FancyRTCAudioTrack) {
+   @objc public func addTrack(audio track: FancyRTCAudioTrack) {
         _mediaStream.addAudioTrack(track.audioTrack)
     }
     
-    public func removeTrack(video track: FancyRTCVideoTrack) {
+   @objc public func removeTrack(video track: FancyRTCVideoTrack) {
         _mediaStream.removeVideoTrack(track.videoTrack)
     }
     
-    public func removeTrack(audio track: FancyRTCAudioTrack) {
+   @objc public func removeTrack(audio track: FancyRTCAudioTrack) {
         _mediaStream.removeAudioTrack(track.audioTrack)
     }
     
-    public var stream: RTCMediaStream {
+   @objc public var stream: RTCMediaStream {
         NSLog("FancyRTCMediaStream stream %@", _mediaStream)
        return _mediaStream
     }
