@@ -14,11 +14,6 @@ import WebRTC
     private var track: RTCVideoTrack?
     private var mediaStream: RTCMediaStream?
     
-    
-    public static func initWithFrame(_ frame: CGRect )-> FancyWebRTCView {
-        return FancyWebRTCView(frame: frame)
-    }
-    
     public func setMirror(mirror: Bool){
         if (self.mirror) {
             self.mirror = true
