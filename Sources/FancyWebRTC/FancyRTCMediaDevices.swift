@@ -145,8 +145,8 @@ import WebRTC
             listener(nil,ErrorDomain.audioPermissionDenied.rawValue)
             return
         }
-        
-        listener(FancyRTCMediaStream(mediaStream: localStream),nil)
+        let stream = FancyRTCMediaStream(mediaStream: localStream)
+        listener( stream ,nil)
     }
     
    @objc public static func selectFormatForDevice(
