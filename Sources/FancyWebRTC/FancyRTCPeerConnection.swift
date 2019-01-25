@@ -12,30 +12,24 @@ import WebRTC
 @objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate{
     var _connection: RTCPeerConnection?
     var configuration: FancyRTCConfiguration
-    var factory: RTCPeerConnectionFactory
+   static let decoder = RTCDefaultVideoDecoderFactory()
+   static  let encoder = RTCDefaultVideoEncoderFactory()
+   static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(encoderFactory: encoder, decoderFactory: decoder)
     
     public override init() {
         configuration = FancyRTCConfiguration()
-        let decoder = RTCDefaultVideoDecoderFactory()
-        let encoder = RTCDefaultVideoEncoderFactory()
-        factory = RTCPeerConnectionFactory(encoderFactory: encoder, decoderFactory: decoder)
-        _connection = factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: [
+        _connection = FancyRTCPeerConnection.factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: [
             "OfferToReceiveVideo": "true","OfferToReceiveAudio":"true"], optionalConstraints: nil), delegate: nil)
         super.init()
         _connection!.delegate = self
-        FancyRTCMediaDevices.factory = factory
     }
     
     public init(config: FancyRTCConfiguration) {
         configuration = config
-        let decoder = RTCDefaultVideoDecoderFactory()
-        let encoder = RTCDefaultVideoEncoderFactory()
-        factory = RTCPeerConnectionFactory(encoderFactory: encoder, decoderFactory: decoder)
-        _connection = factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: [
+        _connection = FancyRTCPeerConnection.factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: [
             "OfferToReceiveVideo": "true","OfferToReceiveAudio":"true"], optionalConstraints: nil), delegate: nil)
         super.init()
         _connection!.delegate = self
-        FancyRTCMediaDevices.factory = factory
     }
     
     public var localDescription: FancyRTCSessionDescription? {

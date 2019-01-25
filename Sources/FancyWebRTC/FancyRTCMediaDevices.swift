@@ -9,7 +9,6 @@
 import Foundation
 import WebRTC
 @objc public class FancyRTCMediaDevices: NSObject {
-    static var factory: RTCPeerConnectionFactory?
     private static let DEFAULT_HEIGHT = 480;
     private static let DEFAULT_WIDTH = 640;
     private static let DEFAULT_FPS = 15;
@@ -21,7 +20,7 @@ import WebRTC
     }
     
    @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,listener: ((FancyRTCMediaStream?, String?) -> Void)){
-        let factory = FancyRTCMediaDevices.factory!
+        let factory = FancyRTCPeerConnection.factory
         let streamId = UUID().uuidString
         let localStream = factory.mediaStream(withStreamId: streamId)
         
@@ -51,12 +50,12 @@ import WebRTC
             var idealHeight = -1
             var maxWidth = -1
             var maxHeight = -1
-            var frameRate = DEFAULT_FPS;
+            // var frameRate = DEFAULT_FPS;
             if (constraints.videoConstraints != nil && (constraints.videoConstraints!["width"] != nil) && (constraints.videoConstraints!["height"] != nil)) {
                 width = constraints.videoConstraints!["width"]
                 height = constraints.videoConstraints!["height"]
-                let rate = constraints.videoConstraints!["frameRate"] as? Int
-                frameRate = rate ?? DEFAULT_FPS
+               // let rate = constraints.videoConstraints!["frameRate"] as? Int
+               // frameRate = rate ?? DEFAULT_FPS
                 
                 if (width != nil && type(of: width) ==  type(of: NSDictionary.self)) {
                     var widthMap = width as! [AnyHashable:AnyHashable]
