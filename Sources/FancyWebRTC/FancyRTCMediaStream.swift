@@ -14,35 +14,30 @@ import WebRTC
     private var _mediaStream: RTCMediaStream
     
     public init(mediaStream: RTCMediaStream) {
-        self._mediaStream = mediaStream
+        _mediaStream = mediaStream
+        NSLog("FancyRTCMediaStream %@", mediaStream)
     }
     
     public var getId: String{
-        get{
-            return self._mediaStream.streamId
-        }
+        return _mediaStream.streamId
     }
     
     public var videoTracks: Array<FancyRTCVideoTrack> {
-        get{
-            let tracks: Array<RTCVideoTrack> = _mediaStream.videoTracks;
-            var fancyVideoTracks: Array<FancyRTCVideoTrack> = []
-            for track in tracks {
-                fancyVideoTracks.append(FancyRTCVideoTrack(track));
-            }
-            return fancyVideoTracks;
+        let tracks: Array<RTCVideoTrack> = _mediaStream.videoTracks;
+        var fancyVideoTracks: Array<FancyRTCVideoTrack> = []
+        for track in tracks {
+            fancyVideoTracks.append(FancyRTCVideoTrack(track));
         }
+        return fancyVideoTracks;
     }
     
     public var audioTracks: Array<FancyRTCAudioTrack> {
-        get{
-            let tracks: Array<RTCAudioTrack> = _mediaStream.audioTracks
-            var fancyAudioTracks: Array<FancyRTCAudioTrack> = []
-            for track in tracks {
-                fancyAudioTracks.append(FancyRTCAudioTrack(track));
-            }
-            return fancyAudioTracks;
+        let tracks: Array<RTCAudioTrack> = _mediaStream.audioTracks
+        var fancyAudioTracks: Array<FancyRTCAudioTrack> = []
+        for track in tracks {
+            fancyAudioTracks.append(FancyRTCAudioTrack(track));
         }
+        return fancyAudioTracks;
     }
     
     public func addTrack(video track: FancyRTCVideoTrack) {
@@ -62,9 +57,6 @@ import WebRTC
     }
     
     public var stream: RTCMediaStream {
-        get{
-            print("testing", _mediaStream, self._mediaStream)
-            return self._mediaStream
-        }
+       return _mediaStream
     }
 }
