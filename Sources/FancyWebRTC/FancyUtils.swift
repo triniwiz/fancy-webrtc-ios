@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objc(FancyUtils)
 @objcMembers public class FancyUtils: NSObject {
     public static func getUUID() -> String {
     return UUID().uuidString

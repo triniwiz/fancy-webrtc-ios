@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 
+@objc(FancyRTCConfiguration)
 @objcMembers public class FancyRTCConfiguration: NSObject {
     private var _configuration: RTCConfiguration
     public var peerIdentity: String {

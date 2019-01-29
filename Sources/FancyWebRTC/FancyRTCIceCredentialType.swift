@@ -8,7 +8,8 @@
 
 import Foundation
 
-@objc public enum FancyRTCIceCredentialType:Int, RawRepresentable {
+@objc(FancyRTCIceCredentialType)
+public enum FancyRTCIceCredentialType:Int, RawRepresentable {
     case PASSWORD
     case TOKEN
     

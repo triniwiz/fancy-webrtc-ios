@@ -8,30 +8,45 @@
 
 import Foundation
 import WebRTC
-@objc public class FancyRTCMediaDevices: NSObject {
-    private static let DEFAULT_HEIGHT = 480;
-    private static let DEFAULT_WIDTH = 640;
-    private static let DEFAULT_FPS = 15;
-    
+@objc(FancyRTCMediaDevices)
+public class FancyRTCMediaDevices: NSObject {
+    private static let DEFAULT_HEIGHT = 480
+    private static let DEFAULT_WIDTH = 640
+    private static let DEFAULT_FPS = 15
+    private static var capturer: RTCVideoCapturer?
     
     enum ErrorDomain: String {
         case videoPermissionDenied = "Video permission denied"
         case audioPermissionDenied = "Audio permission denied"
     }
     
-    @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,listener: @escaping ((_ stream : FancyRTCMediaStream?, _ error : String?) -> Void)){
+    @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,
+                                          listener: @escaping (_ stream : FancyRTCMediaStream?, _ error : String?) -> ()){
         let factory = FancyRTCPeerConnection.factory
-        let streamId = UUID().uuidString
-        let localStream = factory.mediaStream(withStreamId: streamId)
         
+        let localStream = factory.mediaStream(withStreamId: UUID().uuidString)
+        
+        
+        if (!AVCaptureState.isAudioDisabled()) {
+            let audioTrackId = UUID().uuidString
+            let audioSource = factory.audioSource(with: RTCMediaConstraints.init(mandatoryConstraints: nil, optionalConstraints: nil))
+            let audioTrack = factory.audioTrack(with: audioSource, trackId: audioTrackId)
+            audioTrack.isEnabled = true
+            localStream.addAudioTrack(audioTrack)
+            if(AVCaptureState.isVideoDisabled()){
+                listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
+            }
+        } else {
+            listener(nil,ErrorDomain.audioPermissionDenied.rawValue)
+            return
+        }
         
         
         if (!AVCaptureState.isVideoDisabled()) {
             let videoSource = factory.videoSource()
             let capturer = RTCCameraVideoCapturer(delegate: videoSource)
-            let videoTrackId = UUID().uuidString
             
-            let videoTrack = factory.videoTrack(with: videoSource, trackId: videoTrackId)
+            let videoTrack = factory.videoTrack(with: videoSource, trackId: UUID().uuidString)
             videoTrack.isEnabled = true;
             
             
@@ -84,7 +99,7 @@ import WebRTC
             }
             
             
-            let devices = RTCCameraVideoCapturer.captureDevices();
+            let devices = RTCCameraVideoCapturer.captureDevices()
             var selectedDevice: AVCaptureDevice?
             let pos = useFrontCamera
                 ? AVCaptureDevice.Position.front
@@ -125,28 +140,29 @@ import WebRTC
             
             
             
-            let format = selectFormatForDevice(device: selectedDevice!, width: Int32(w), height: Int32(h), capturer: capturer);
-            let fps = selectFpsForFormat(format: format);
+            let format = selectFormatForDevice(device: selectedDevice!, width: Int32(w), height: Int32(h), capturer: capturer)
+            let fps = selectFpsForFormat(format: format)
             
-            capturer.startCapture(with: selectedDevice!, format: format, fps: Int(fps))
             localStream.addVideoTrack(videoTrack)
+           capturer.startCapture(with: selectedDevice!, format: format, fps: Int(fps)) { (e: Error?) in
+                if(e != nil){
+                    DispatchQueue.main.async {
+                        listener(nil , e!.localizedDescription)
+                    }
+                }else{
+                    self.capturer = capturer
+                    DispatchQueue.main.async {
+                        listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
+                    }
+                }
+            }
+            
+            
         } else {
             listener(nil,ErrorDomain.videoPermissionDenied.rawValue)
             return
         }
         
-        if (!AVCaptureState.isAudioDisabled()) {
-            let audioTrackId = UUID().uuidString
-            let audioSource = factory.audioSource(with: RTCMediaConstraints.init(mandatoryConstraints: nil, optionalConstraints: nil))
-            let audioTrack = factory.audioTrack(with: audioSource, trackId: audioTrackId)
-            audioTrack.isEnabled = true
-            localStream.addAudioTrack(audioTrack)
-        } else {
-            listener(nil,ErrorDomain.audioPermissionDenied.rawValue)
-            return
-        }
-        let stream = FancyRTCMediaStream(mediaStream: localStream)
-        listener( stream ,nil)
     }
     
    @objc public static func selectFormatForDevice(
@@ -159,8 +175,8 @@ import WebRTC
         let targetHeight = height
         let targetWidth = width
         
-        var selectedFormat: AVCaptureDevice.Format?;
-        var currentDiff = Int32.max;
+        var selectedFormat: AVCaptureDevice.Format?
+        var currentDiff = Int32.max
         
         let supportedFormats = RTCCameraVideoCapturer.supportedFormats(for: device)
         
@@ -171,12 +187,12 @@ import WebRTC
             let diff =
                 abs(targetWidth - dimension.width) +
                     abs(targetHeight - dimension.height)
-            let pixelFormat = CMFormatDescriptionGetMediaSubType(format.formatDescription);
+            let pixelFormat = CMFormatDescriptionGetMediaSubType(format.formatDescription)
             if (diff < currentDiff) {
-                selectedFormat = format;
-                currentDiff = diff;
+                selectedFormat = format
+                currentDiff = diff
             }else if(diff == currentDiff && pixelFormat == capturer.preferredOutputPixelFormat()){
-                selectedFormat = format;
+                selectedFormat = format
             }
         }
         
@@ -187,9 +203,9 @@ import WebRTC
    @objc public static func selectFpsForFormat(format: AVCaptureDevice.Format) -> Double {
         var maxFrameRate = 0.0
         for fpsRange in format.videoSupportedFrameRateRanges{
-            maxFrameRate = fmax(maxFrameRate, fpsRange.maxFrameRate);
+            maxFrameRate = fmax(maxFrameRate, fpsRange.maxFrameRate)
         }
-        return maxFrameRate;
+        return maxFrameRate
     }
     
 }

@@ -8,7 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc public enum FancyRTCSdpSemantics: Int, RawRepresentable {
+@objc(FancyRTCSdpSemantics)
+public enum FancyRTCSdpSemantics: Int, RawRepresentable {
     case PLAN_B
     case UNIFIED_PLAN
     

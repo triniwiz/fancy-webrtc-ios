@@ -9,10 +9,53 @@
 import Foundation
 import WebRTC
 
-@objcMembers public class FancyWebRTCView: RTCEAGLVideoView {
+@objc(FancyWebRTCView)
+@objcMembers public class FancyWebRTCView: UIView, RTCVideoViewDelegate{
+    
+    public func videoView(_ videoView: RTCVideoRenderer, didChangeVideoSize size: CGSize) {
+        
+    }
+    
+    private var videoView: RTCEAGLVideoView?
     private var mirror: Bool = false
     private var track: RTCVideoTrack?
-    private var mediaStream: RTCMediaStream?
+    private var mediaStream: FancyRTCMediaStream?
+    
+    public convenience init(){
+        self.init(frame: .zero)
+        self.videoView = RTCEAGLVideoView.init(frame: frame)
+        if(self.videoView != nil){
+            self.videoView!.delegate = self
+            self.videoView!.frame = self.bounds
+            self.addSubview(videoView!)
+        }
+    }
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.videoView = RTCEAGLVideoView.init(frame: frame)
+        if(self.videoView != nil){
+            self.videoView!.delegate = self
+            self.videoView!.frame = self.bounds
+            self.addSubview(videoView!)
+        }
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.videoView = RTCEAGLVideoView.init(coder: aDecoder)
+        if(self.videoView != nil){
+            self.videoView!.delegate = self
+            self.videoView!.frame = self.bounds
+            self.addSubview(videoView!)
+        }
+    }
+   
+
+    public override func layoutSubviews() {
+        if(self.videoView != nil){
+            self.videoView!.frame = self.bounds
+        }
+    }
     
     public func setMirror(mirror: Bool){
         if (self.mirror) {
@@ -24,39 +67,42 @@ import WebRTC
         }
     }
     
-    public func setVideoTrack(track: RTCVideoTrack?){
-        self.track = track;
-        if (track != nil) {
-            track!.add(self);
+    private func setupTrack(){
+        if (track != nil && self.videoView != nil) {
+            track!.add(self.videoView!)
         }
     }
     
+    public func setVideoTrack(track: RTCVideoTrack?){
+        self.track = track
+        self.setupTrack()
+    }
     
-    public func setSrcObject(stream: FancyRTCMediaStream) {
-        mediaStream = stream.stream
+    
+    private func setupStream(){
         if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
             let track = mediaStream!.videoTracks.first
             if (self.track != nil) {
+                if(self.videoView != nil){
+                    self.track?.remove(self.videoView!)
+                }
                 self.track = nil
             }
-            self.track = track
-            if(self.track != nil){
-                self.track?.add(self)
+            self.track = track?.videoTrack
+            if(self.track != nil && self.videoView != nil){
+                self.track?.add(self.videoView!)
             }
         }
+    }
+    
+    public func setSrcObject(stream: FancyRTCMediaStream) {
+        mediaStream = stream
+        setupStream()
     }
     
     public func setSrcObject(with rtcStream: RTCMediaStream) {
-        mediaStream = rtcStream
-        if (mediaStream != nil && mediaStream!.videoTracks.count > 0) {
-            let track = mediaStream!.videoTracks.first
-            if (self.track != nil) {
-                self.track = nil
-            }
-            self.track = track;
-            if(self.track != nil){
-                self.track?.add(self)
-            }
-        }
+        mediaStream = FancyRTCMediaStream(mediaStream: rtcStream)
+        setupStream()
+        
     }
 }

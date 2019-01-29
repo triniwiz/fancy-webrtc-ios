@@ -9,7 +9,8 @@
 import Foundation
 import WebRTC
 
-@objc public enum FancyRTCBundlePolicy: Int, RawRepresentable {
+@objc(FancyRTCBundlePolicy)
+public enum FancyRTCBundlePolicy: Int, RawRepresentable {
     case BALANCED
     case MAX_COMPAT
     case MAX_BUNDLE

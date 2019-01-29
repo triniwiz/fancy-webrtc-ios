@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 
+@objc(FancyRTCAudioTrack)
 @objcMembers public class FancyRTCAudioTrack: FancyRTCMediaStreamTrack {
     private var _audioTrack: RTCAudioTrack
     public init(_ track: RTCAudioTrack) {

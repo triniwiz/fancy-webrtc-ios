@@ -8,7 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc public enum FancyRTCPeerConnectionState: Int, RawRepresentable {
+@objc(FancyRTCPeerConnectionState)
+public enum FancyRTCPeerConnectionState: Int, RawRepresentable {
     case NEW
     case CONNECTING
     case CONNECTED

@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 
+@objc(FancyRTCMediaStreamTrack)
 @objcMembers public class FancyRTCMediaStreamTrack: NSObject {
     private var _mediaStreamTrack: RTCMediaStreamTrack
     

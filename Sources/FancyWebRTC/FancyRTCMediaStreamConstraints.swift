@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 
+@objc(FancyRTCMediaStreamConstraints)
 @objcMembers public class FancyRTCMediaStreamConstraints: NSObject {
     var hasVideoConstraints = false
     var hasAudioConstraints = false

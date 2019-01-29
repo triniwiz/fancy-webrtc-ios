@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 
+@objc(FancyRTCSessionDescription)
 @objcMembers public class FancyRTCSessionDescription: NSObject {
     
     private var _sessionDescription: RTCSessionDescription

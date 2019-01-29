@@ -9,12 +9,13 @@
 import Foundation
 import WebRTC
 
+@objc(FancyRTCPeerConnection)
 @objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate{
     var _connection: RTCPeerConnection?
     var configuration: FancyRTCConfiguration
-   static let decoder = RTCDefaultVideoDecoderFactory()
-   static  let encoder = RTCDefaultVideoEncoderFactory()
-   static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(encoderFactory: encoder, decoderFactory: decoder)
+   static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(
+    encoderFactory: RTCDefaultVideoEncoderFactory()
+    , decoderFactory: RTCDefaultVideoDecoderFactory())
     
     public override init() {
         configuration = FancyRTCConfiguration()

@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 
+@objc(FancyRTCIceCandidate)
 @objcMembers public class FancyRTCIceCandidate: NSObject{
     
     private var _candidate: String

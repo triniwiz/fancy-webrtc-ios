@@ -103,11 +103,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Sources/FancyWebRTC/FancyRTCPeerConnection.swift"
-            timestampString = "570036158.768531"
+            timestampString = "570227460.474961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "320"
-            endingLineNumber = "320"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "createAnswer(mediaConstraints:listener:)"
             landmarkType = "7">
          </BreakpointContent>

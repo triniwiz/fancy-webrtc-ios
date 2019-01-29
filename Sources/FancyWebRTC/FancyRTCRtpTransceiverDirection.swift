@@ -9,7 +9,8 @@
 import Foundation
 import WebRTC
 
-@objc public enum FancyRTCRtpTransceiverDirection: Int, RawRepresentable {
+@objc(FancyRTCRtpTransceiverDirection)
+public enum FancyRTCRtpTransceiverDirection: Int, RawRepresentable {
     case INACTIVE
     case RECV_ONLY
     case SEND_ONLY

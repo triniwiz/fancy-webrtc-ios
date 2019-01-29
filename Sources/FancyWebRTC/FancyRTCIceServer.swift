@@ -9,7 +9,7 @@
 import Foundation
 import WebRTC
 
-
+@objc(FancyRTCIceServer)
 @objcMembers public class FancyRTCIceServer: NSObject {
     
     private var _urls: Array<String>

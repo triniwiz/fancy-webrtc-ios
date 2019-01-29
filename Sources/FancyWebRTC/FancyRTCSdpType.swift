@@ -9,7 +9,8 @@
 import Foundation
 import  WebRTC
 
-@objc public enum FancyRTCSdpType: Int, RawRepresentable, Encodable, Decodable {
+@objc(FancyRTCSdpType)
+public enum FancyRTCSdpType: Int, RawRepresentable, Encodable, Decodable {
     case ANSWER
     case OFFER
     case PRANSWER

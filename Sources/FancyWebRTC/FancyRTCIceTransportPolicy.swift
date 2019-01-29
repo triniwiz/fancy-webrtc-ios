@@ -8,7 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc public enum FancyRTCIceTransportPolicy: Int,RawRepresentable {
+@objc(FancyRTCIceTransportPolicy)
+public enum FancyRTCIceTransportPolicy: Int,RawRepresentable {
     case ALL
     case PUBLIC
     case RELAY

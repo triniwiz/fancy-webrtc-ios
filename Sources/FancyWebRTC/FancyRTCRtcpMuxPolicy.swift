@@ -8,7 +8,8 @@
 
 import Foundation
 import WebRTC
-@objc public enum FancyRTCRtcpMuxPolicy: Int, RawRepresentable {
+@objc(FancyRTCRtcpMuxPolicy)
+public enum FancyRTCRtcpMuxPolicy: Int, RawRepresentable {
     case NEGOTIATE
     case REQUIRE
     public typealias RawValue = String
