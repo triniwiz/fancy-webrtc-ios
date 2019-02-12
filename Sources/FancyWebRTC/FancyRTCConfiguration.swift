@@ -31,7 +31,7 @@ import WebRTC
             case .MAX_BUNDLE:
                 configuration.bundlePolicy = .maxBundle
             case .MAX_COMPAT:
-                configuration.bundlePolicy = .maxCompat
+                configuration.bundlePolicy = .balanced
             }
         }
     }
