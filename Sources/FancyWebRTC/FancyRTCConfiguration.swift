@@ -119,11 +119,13 @@ import WebRTC
         // configuration.enableDtlsSrtp = true;
         // configuration.enableRtpDataChannel = true;
         
-        configuration.tcpCandidatePolicy = .disabled
-        configuration.bundlePolicy = .maxBundle
-        configuration.rtcpMuxPolicy = .require
-        configuration.continualGatheringPolicy = .gatherContinually
-        configuration.keyType = .ECDSA
+        /*
+         configuration.tcpCandidatePolicy = .disabled
+         configuration.bundlePolicy = .maxBundle
+         configuration.rtcpMuxPolicy = .require
+         configuration.continualGatheringPolicy = .gatherContinually
+         configuration.keyType = .ECDSA
+         */
         
     }
     
@@ -138,12 +140,13 @@ import WebRTC
         
         // configuration.enableDtlsSrtp = true;
         // configuration.enableRtpDataChannel = true;
-        
-        configuration.tcpCandidatePolicy = .disabled
-        configuration.bundlePolicy = .maxBundle
-        configuration.rtcpMuxPolicy = .require
-        configuration.continualGatheringPolicy = .gatherContinually
-        configuration.keyType = .ECDSA
+        /*
+         configuration.tcpCandidatePolicy = .disabled
+         configuration.bundlePolicy = .maxBundle
+         configuration.rtcpMuxPolicy = .require
+         configuration.continualGatheringPolicy = .gatherContinually
+         configuration.keyType = .ECDSA
+         */
     }
     
     public init(options: NSDictionary) {
