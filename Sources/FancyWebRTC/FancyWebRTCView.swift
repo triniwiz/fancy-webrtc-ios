@@ -49,8 +49,8 @@ import WebRTC
             self.addSubview(videoView!)
         }
     }
-   
-
+    
+    
     public override func layoutSubviews() {
         if(self.videoView != nil){
             self.videoView!.frame = self.bounds
@@ -103,6 +103,34 @@ import WebRTC
     public func setSrcObject(with rtcStream: RTCMediaStream) {
         mediaStream = FancyRTCMediaStream(mediaStream: rtcStream)
         setupStream()
+        
+    }
+    
+    public func setSrcObject(withFancy rtcStreamTrack: FancyRTCMediaStreamTrack) {
+        if (self.track != nil) {
+            if(self.videoView != nil){
+                self.track?.remove(self.videoView!)
+            }
+            self.track = nil
+        }
+        self.track = rtcStreamTrack.mediaStreamTrack as? RTCVideoTrack
+        if(self.track != nil && self.videoView != nil){
+            self.track?.add(self.videoView!)
+        }
+    }
+    
+    
+    public func setSrcObject(withRtc mediaStreamTrack: RTCMediaStreamTrack) {
+        if (self.track != nil) {
+            if(self.videoView != nil){
+                self.track?.remove(self.videoView!)
+            }
+            self.track = nil
+        }
+        self.track = mediaStreamTrack as? RTCVideoTrack
+        if(self.track != nil && self.videoView != nil){
+            self.track?.add(self.videoView!)
+        }
         
     }
 }
