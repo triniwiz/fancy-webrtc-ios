@@ -16,7 +16,7 @@ import WebRTC
     private var _mediaTrack: FancyRTCMediaStreamTrack?
     private var _transceiver: FancyRTCRtpTransceiver?
     
-    public init(receiver: FancyRTCRtpReceiver, streams: Array<FancyRTCMediaStream>, mediaTrack: FancyRTCMediaStreamTrack?, transceiver: FancyRTCRtpTransceiver?) {
+    public init(receiver: FancyRTCRtpReceiver, streams: Array<FancyRTCMediaStream>?, mediaTrack: FancyRTCMediaStreamTrack?, transceiver: FancyRTCRtpTransceiver?) {
         self._receiver = receiver
         self._streams = streams
         self._mediaTrack = mediaTrack

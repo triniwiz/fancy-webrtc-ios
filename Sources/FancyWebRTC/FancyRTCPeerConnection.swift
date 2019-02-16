@@ -193,27 +193,22 @@ import WebRTC
         }
     }
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove rtpReceiver: RTCRtpReceiver) {
-        
+    
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didStartReceivingOn transceiver: RTCRtpTransceiver) {
+        if(onTrackListener != nil){
+            onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  transceiver.receiver), streams: nil, mediaTrack: (transceiver.receiver.track != nil ? FancyRTCMediaStreamTrack(track: transceiver.receiver.track!): nil), transceiver:FancyRTCRtpTransceiver(rtpTransceiver: transceiver)))
+        }
     }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didAdd rtpReceiver: RTCRtpReceiver, streams mediaStreams: [RTCMediaStream]) {
-        if (onTrackListener != nil) {
-            var list: Array<FancyRTCMediaStream> = []
-            for stream in mediaStreams {
-                list.append(FancyRTCMediaStream(mediaStream:stream));
-            }
-            
-            /*
-             RtpTransceiver rtpTransceiver = null;
-             for (RtpTransceiver transceiver : connection.getTransceivers()) {
-             if (transceiver.getReceiver() == rtpReceiver) {
-             rtpTransceiver = transceiver;
-             }
-             }
-             */
-            if(onTrackListener != nil){
-                onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  rtpReceiver), streams: list, mediaTrack: (rtpReceiver.track != nil ? FancyRTCMediaStreamTrack(track: rtpReceiver.track!): nil), transceiver: nil))
+        if(peerConnection.configuration.sdpSemantics == .planB){
+            if (onTrackListener != nil) {
+                var list: Array<FancyRTCMediaStream> = []
+                for stream in mediaStreams {
+                    list.append(FancyRTCMediaStream(mediaStream:stream));
+                }
+                
+                 onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  rtpReceiver), streams: list, mediaTrack: (rtpReceiver.track != nil ? FancyRTCMediaStreamTrack(track: rtpReceiver.track!): nil), transceiver: nil))
             }
         }
     }
