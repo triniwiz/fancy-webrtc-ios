@@ -91,14 +91,7 @@ import WebRTC
     
     private var onTrackListener: (((FancyRTCTrackEvent) -> ())?)
     
-    public var onTrack:(((FancyRTCTrackEvent) -> ())?) {
-        get {
-            return onTrackListener
-        }
-        set {
-            onTrackListener = newValue
-        }
-    }
+    public var onTrack:((_ track : FancyRTCTrackEvent) -> Void)?
     
     private var onRemoveTrackListener: ((()-> Void)?)
     
