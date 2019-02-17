@@ -10,8 +10,17 @@ import Foundation
 import WebRTC
 
 @objc(FancyRTCPeerConnection)
-@objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate {
-    var _connection: RTCPeerConnection?
+@objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate, RTCDataChannelDelegate {
+    
+    public func dataChannelDidChangeState(_ dataChannel: RTCDataChannel) {
+        
+    }
+    
+    public func dataChannel(_ dataChannel: RTCDataChannel, didReceiveMessageWith buffer: RTCDataBuffer) {
+        
+    }
+    
+    var _connection: RTCPeerConnection
     var configuration: FancyRTCConfiguration
     static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(
         encoderFactory: RTCDefaultVideoEncoderFactory()
@@ -19,18 +28,17 @@ import WebRTC
     
     public override init() {
         configuration = FancyRTCConfiguration()
-        _connection = FancyRTCPeerConnection.factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: [
-            "OfferToReceiveVideo": "true","OfferToReceiveAudio":"true"], optionalConstraints: nil), delegate: nil)
+        _connection = FancyRTCPeerConnection.factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil), delegate: nil)
         super.init()
-        _connection!.delegate = self
+        _connection.delegate = self
     }
     
     public init(config: FancyRTCConfiguration) {
         configuration = config
-        _connection = FancyRTCPeerConnection.factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: [
-            "OfferToReceiveVideo": "true","OfferToReceiveAudio":"true"], optionalConstraints: nil), delegate: nil)
+        FancyRTCPeerConnection.factory.peerConnection
+        _connection = FancyRTCPeerConnection.factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil), delegate: nil)
         super.init()
-        _connection!.delegate = self
+        _connection.delegate = self
     }
     
     public var localDescription: FancyRTCSessionDescription? {
@@ -44,10 +52,12 @@ import WebRTC
     
     public func localDescription(sdp: FancyRTCSessionDescription, listener: @escaping (String?) -> Void){
         connection.setLocalDescription(sdp.sessionDescription) { (error) in
-            if(error != nil){
-                listener(error!.localizedDescription)
-            }else{
-                listener(nil)
+            DispatchQueue.main.async {
+                if(error != nil){
+                    listener(error!.localizedDescription)
+                }else{
+                    listener(nil)
+                }
             }
         }
     }
@@ -62,11 +72,13 @@ import WebRTC
     }
     
     public func remoteDescription(sdp: FancyRTCSessionDescription, listener: @escaping (String?) -> Void){
-        connection.setRemoteDescription(sdp.sessionDescription) { (error) in
-            if(error != nil){
-                listener(error!.localizedDescription)
-            }else{
-                listener(nil)
+        _connection.setRemoteDescription(sdp.sessionDescription) { (error) in
+            DispatchQueue.main.async {
+                if(error != nil){
+                    listener(error!.localizedDescription)
+                }else{
+                    listener(nil)
+                }
             }
         }
     }
@@ -78,32 +90,32 @@ import WebRTC
     }
     
     
-    private var onConnectionStateChangeListener: ((() -> Void)?)
+    private var onConnectionStateChangeListener: (() -> Void)?
     
     public func onConnectionStateChange(_ listener : @escaping () -> Void){
         onConnectionStateChangeListener = listener
     }
     
-    private var onTrackListener: (((FancyRTCTrackEvent) -> ())?)
+    private var onTrackListener: ((FancyRTCTrackEvent) -> ())?
     
     public func onTrack(_ listener :@escaping (FancyRTCTrackEvent) -> Void){
         onTrackListener = listener
     }
     
-    private var onRemoveTrackListener: ((()-> Void)?)
+    private var onRemoveTrackListener: (()-> Void)?
     
     public func onRemoveTrack(_ listener : @escaping () -> Void) {
         onRemoveTrackListener = listener
     }
     
-    private var onRemoveStreamListener:(((_ stream:FancyRTCMediaStream) -> Void)?)
+    private var onRemoveStreamListener:((FancyRTCMediaStream) -> Void)?
     
     public func onRemoveStream(_ listener: @escaping (FancyRTCMediaStream) -> Void) {
         onRemoveStreamListener = listener
     }
     
     
-    private var onIceGatheringStateChangeListener:((() -> Void)?)
+    private var onIceGatheringStateChangeListener:(() -> Void)?
     
     
     public func onIceGatheringStateChange(_ listener:  @escaping () -> Void ) {
@@ -111,104 +123,127 @@ import WebRTC
     }
     
     
-    private var onAddStreamListener:(((_ stream: FancyRTCMediaStream)->Void)?)
+    private var onAddStreamListener:((FancyRTCMediaStream)->Void)?
     
     public func onAddStream(_ listener : @escaping (FancyRTCMediaStream)-> Void) {
         onAddStreamListener = listener
     }
     
     
-    private var onNegotiationNeededListener:((()->Void)?)
+    private var onNegotiationNeededListener:(()->Void)?
     
     public func onNegotiationNeeded(_ listener : @escaping ()->Void) {
         onNegotiationNeededListener = listener
     }
     
-    private var onSignalingStateChangeListener:((()->Void)?)
+    private var onSignalingStateChangeListener:(()->Void)?
     
     public func onSignalingStateChange(_ listener :@escaping ()->Void) {
         onSignalingStateChangeListener = listener
     }
     
-    private var onIceCandidateListener:(((_ candidate: FancyRTCIceCandidate)->Void)?)
+    private var onIceCandidateListener:((FancyRTCIceCandidate)->Void)?
     
     public func onIceCandidate(_ listener :@escaping (FancyRTCIceCandidate)->Void) {
         onIceCandidateListener = listener
     }
     
     
-    private var onDataChannelListener:(((_ event: FancyRTCDataChannelEvent)->Void)?)
+    private var onDataChannelListener:((FancyRTCDataChannelEvent)->Void)?
     
     public func onDataChannel(_ listener :@escaping (FancyRTCDataChannelEvent)->Void) {
         onDataChannelListener = listener
     }
     
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didStartReceivingOn transceiver: RTCRtpTransceiver) {
-        if(onTrackListener != nil){
-            onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  transceiver.receiver), streams: nil, mediaTrack: (transceiver.receiver.track != nil ? FancyRTCMediaStreamTrack(track: transceiver.receiver.track!): nil), transceiver:FancyRTCRtpTransceiver(rtpTransceiver: transceiver)))
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didStartReceivingOn transceiver:
+        RTCRtpTransceiver) {
+        DispatchQueue.main.async {
+            if(self.onTrackListener != nil){
+                self.onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  transceiver.receiver), streams: nil, mediaTrack: (transceiver.receiver.track != nil ? FancyRTCMediaStreamTrack(track: transceiver.receiver.track!): nil), transceiver:FancyRTCRtpTransceiver(rtpTransceiver: transceiver)))
+            }
         }
     }
     
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didAdd rtpReceiver: RTCRtpReceiver, streams mediaStreams: [RTCMediaStream]) {
-        if(peerConnection.configuration.sdpSemantics == .planB){
-            if (onTrackListener != nil) {
-                var list: Array<FancyRTCMediaStream> = []
-                for stream in mediaStreams {
-                    list.append(FancyRTCMediaStream(mediaStream:stream));
+        DispatchQueue.main.async {
+            if(peerConnection.configuration.sdpSemantics == .planB){
+                if (self.onTrackListener != nil) {
+                    var list: Array<FancyRTCMediaStream> = []
+                    for stream in mediaStreams {
+                        list.append(FancyRTCMediaStream(mediaStream:stream));
+                    }
+                    
+                    self.onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  rtpReceiver), streams: list, mediaTrack: (rtpReceiver.track != nil ? FancyRTCMediaStreamTrack(track: rtpReceiver.track!): nil), transceiver: nil))
                 }
-                
-                onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  rtpReceiver), streams: list, mediaTrack: (rtpReceiver.track != nil ? FancyRTCMediaStreamTrack(track: rtpReceiver.track!): nil), transceiver: nil))
+            }
+        }
+    }
+    
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {
+        DispatchQueue.main.async {
+            if(self.onConnectionStateChangeListener != nil){
+                self.onConnectionStateChangeListener!()
+            }
+        }
+    }
+    
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {
+        DispatchQueue.main.async {
+            if(self.onIceGatheringStateChangeListener != nil){
+                self.onIceGatheringStateChangeListener!()
             }
         }
     }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCPeerConnectionState) {
-        if(onConnectionStateChangeListener != nil){
-            onConnectionStateChangeListener!()
+        DispatchQueue.main.async {
+            if(self.onConnectionStateChangeListener != nil){
+                self.onConnectionStateChangeListener!()
+            }
         }
     }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didChange stateChanged: RTCSignalingState) {
-        if(onSignalingStateChangeListener != nil){
-            onSignalingStateChangeListener!()
+        DispatchQueue.main.async {
+            if(self.onSignalingStateChangeListener != nil){
+                self.onSignalingStateChangeListener!()
+            }
         }
     }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didAdd stream: RTCMediaStream) {
-        if(onAddStreamListener != nil){
-            onAddStreamListener!(FancyRTCMediaStream(mediaStream: stream))
+        DispatchQueue.main.async {
+            if(self.onAddStreamListener != nil){
+                self.onAddStreamListener!(FancyRTCMediaStream(mediaStream: stream))
+            }
         }
     }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove stream: RTCMediaStream) {
-        if(onRemoveStreamListener != nil){
-            onRemoveStreamListener!(FancyRTCMediaStream(mediaStream: stream))
+        DispatchQueue.main.async {
+            if(self.onRemoveStreamListener != nil){
+                self.onRemoveStreamListener!(FancyRTCMediaStream(mediaStream: stream))
+            }
         }
     }
     
     public func peerConnectionShouldNegotiate(_ peerConnection: RTCPeerConnection) {
-        if(onNegotiationNeededListener != nil){
-            onNegotiationNeededListener!()
+        DispatchQueue.main.async {
+            if(self.onNegotiationNeededListener != nil){
+                self.onNegotiationNeededListener!()
+            }
         }
     }
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceConnectionState) {
-        if(onConnectionStateChangeListener != nil){
-            onConnectionStateChangeListener!()
-        }
-    }
     
-    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCIceGatheringState) {
-        if(onIceGatheringStateChangeListener != nil){
-            onIceGatheringStateChangeListener!()
-        }
-    }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didGenerate candidate: RTCIceCandidate) {
-        if (onIceCandidateListener != nil) {
-            onIceCandidateListener!(FancyRTCIceCandidate(candidate: candidate));
+        DispatchQueue.main.async {
+            if (self.onIceCandidateListener != nil) {
+                self.onIceCandidateListener!(FancyRTCIceCandidate(candidate: candidate));
+            }
         }
     }
     
@@ -217,11 +252,17 @@ import WebRTC
     }
     
     public func peerConnection(_ peerConnection: RTCPeerConnection, didOpen dataChannel: RTCDataChannel) {
-        if (onDataChannelListener != nil) {
-            onDataChannelListener!(FancyRTCDataChannelEvent(channel: FancyRTCDataChannel(channel: dataChannel)));
+        DispatchQueue.main.async {
+            if (self.onDataChannelListener != nil) {
+                self.onDataChannelListener!(FancyRTCDataChannelEvent(channel: FancyRTCDataChannel(channel: dataChannel)));
+            }
         }
     }
     
+    
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didRemove rtpReceiver: RTCRtpReceiver) {
+        
+    }
     public var defaultIceServers: Array<FancyRTCIceServer> {
         get{
             var list: Array<FancyRTCIceServer> = []
@@ -241,20 +282,20 @@ import WebRTC
     }
     
     public func addIceCandidate(candidate: FancyRTCIceCandidate) {
-        connection.add(candidate.iceCandidate)
+        _connection.add(candidate.iceCandidate)
     }
     
     public func addTrack(track: FancyRTCMediaStreamTrack, streamIds: [String]) {
-        connection.add(track.mediaStreamTrack, streamIds: streamIds)
+        _connection.add(track.mediaStreamTrack, streamIds: streamIds)
     }
     
     public func close() {
-        connection.close()
+        _connection.close()
     }
     
     
     public func createDataChannel(label: String, channelInit: FancyRTCDataChannelInit) -> FancyRTCDataChannel? {
-        let channel = connection.dataChannel(forLabel: label, configuration: channelInit.channelInit)
+        let channel = _connection.dataChannel(forLabel: label, configuration: channelInit.channelInit)
         if(channel != nil){
             return FancyRTCDataChannel(channel: channel!)
         }
@@ -267,7 +308,15 @@ import WebRTC
     
     
     public func createAnswer(mediaConstraints: FancyRTCMediaConstraints, listener: @escaping (FancyRTCSessionDescription?, String?) -> Void) {
-        connection.answer(for: mediaConstraints.mediaConstraints) { (sdp, error) in
+        if(!mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveVideo", value: "true")) || !mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveVideo", value: "false"))){
+            mediaConstraints.mandatory.append(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveVideo", value: "true"))
+        }
+        
+        if(!mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveAudio", value: "true")) || !mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveAudio", value: "false"))){
+            mediaConstraints.mandatory.append(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveAudio", value: "true"))
+        }
+        
+        _connection.answer(for: mediaConstraints.mediaConstraints) { (sdp, error) in
             if(error != nil){
                 listener(nil,error?.localizedDescription)
             }else{
@@ -278,7 +327,16 @@ import WebRTC
     
     
     public func createOffer(mediaConstraints: FancyRTCMediaConstraints, listener: @escaping (FancyRTCSessionDescription?, String?) -> Void) {
-        connection.offer(for: mediaConstraints.mediaConstraints) { (sdp, error) in
+        
+        
+        if(!mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveVideo", value: "true")) || !mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveVideo", value: "false"))){
+            mediaConstraints.mandatory.append(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveVideo", value: "true"))
+        }
+        
+        if(!mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveAudio", value: "true")) || !mediaConstraints.mandatory.contains(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveAudio", value: "false"))){
+            mediaConstraints.mandatory.append(FancyRTCMediaConstraints.FancyRTCKeyValue(key: "OfferToReceiveAudio", value: "true"))
+        }
+        _connection.offer(for: mediaConstraints.mediaConstraints) { (sdp, error) in
             if(error != nil){
                 listener(nil,error?.localizedDescription)
             }else{
@@ -289,7 +347,7 @@ import WebRTC
     
     public var connection: RTCPeerConnection {
         get {
-            return _connection!
+            return _connection
         }
     }
 }
