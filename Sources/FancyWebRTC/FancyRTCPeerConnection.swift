@@ -200,6 +200,7 @@ import WebRTC
         }
     }
     
+    
     public func peerConnection(_ peerConnection: RTCPeerConnection, didAdd rtpReceiver: RTCRtpReceiver, streams mediaStreams: [RTCMediaStream]) {
         if(peerConnection.configuration.sdpSemantics == .planB){
             if (onTrackListener != nil) {
@@ -210,6 +211,12 @@ import WebRTC
                 
                  onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  rtpReceiver), streams: list, mediaTrack: (rtpReceiver.track != nil ? FancyRTCMediaStreamTrack(track: rtpReceiver.track!): nil), transceiver: nil))
             }
+        }
+    }
+    
+    public func peerConnection(_ peerConnection: RTCPeerConnection, didChange newState: RTCPeerConnectionState) {
+        if(onConnectionStateChangeListener != nil){
+            onConnectionStateChangeListener!()
         }
     }
     
