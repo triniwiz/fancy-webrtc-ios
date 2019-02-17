@@ -10,7 +10,7 @@ import Foundation
 import WebRTC
 
 @objc(FancyRTCPeerConnection)
-@objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate{
+@objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate {
     var _connection: RTCPeerConnection?
     var configuration: FancyRTCConfiguration
     static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(
@@ -80,111 +80,67 @@ import WebRTC
     
     private var onConnectionStateChangeListener: ((() -> Void)?)
     
-    public var onConnectionStateChange:((() -> Void)?) {
-        get{
-            return onConnectionStateChangeListener
-        }
-        set {
-            onConnectionStateChangeListener = newValue
-        }
+    public func onConnectionStateChange(_ listener : @escaping () -> Void){
+        onConnectionStateChangeListener = listener
     }
     
     private var onTrackListener: (((FancyRTCTrackEvent) -> ())?)
     
-    public var onTrack:((_ track : FancyRTCTrackEvent) -> Void)?
+    public func onTrack(_ listener :@escaping (FancyRTCTrackEvent) -> Void){
+        onTrackListener = listener
+    }
     
     private var onRemoveTrackListener: ((()-> Void)?)
     
-    public var onRemoveTrack: ((()-> Void)?) {
-        get{
-            return onRemoveTrackListener
-        }
-        set{
-            onRemoveTrackListener = newValue
-        }
+    public func onRemoveTrack(_ listener : @escaping () -> Void) {
+        onRemoveTrackListener = listener
     }
     
     private var onRemoveStreamListener:(((_ stream:FancyRTCMediaStream) -> Void)?)
     
-    public var onRemoveStream:(((_ stream:FancyRTCMediaStream) -> Void)?) {
-        get {
-            return onRemoveStreamListener
-        }
-        set {
-            onRemoveStreamListener = newValue
-        }
+    public func onRemoveStream(_ listener: @escaping (FancyRTCMediaStream) -> Void) {
+        onRemoveStreamListener = listener
     }
     
     
     private var onIceGatheringStateChangeListener:((() -> Void)?)
     
     
-    
-    public var onIceGatheringStateChange:((() -> Void)?) {
-        get {
-            return onIceGatheringStateChangeListener
-        }
-        set {
-            onIceGatheringStateChangeListener = newValue
-        }
+    public func onIceGatheringStateChange(_ listener:  @escaping () -> Void ) {
+        onIceGatheringStateChangeListener = listener
     }
     
     
     private var onAddStreamListener:(((_ stream: FancyRTCMediaStream)->Void)?)
     
-    public var onAddStream:(((_ stream:FancyRTCMediaStream)->Void)?) {
-        get {
-            return onAddStreamListener
-        }
-        set {
-            onAddStreamListener = newValue
-        }
+    public func onAddStream(_ listener : @escaping (FancyRTCMediaStream)-> Void) {
+        onAddStreamListener = listener
     }
     
     
     private var onNegotiationNeededListener:((()->Void)?)
     
-    public var onNegotiationNeeded:((()->Void)?) {
-        get {
-            return onNegotiationNeededListener
-        }
-        set {
-            onNegotiationNeededListener = newValue
-        }
+    public func onNegotiationNeeded(_ listener : @escaping ()->Void) {
+        onNegotiationNeededListener = listener
     }
     
     private var onSignalingStateChangeListener:((()->Void)?)
     
-    public var onSignalingStateChange:((()->Void)?) {
-        get {
-            return onSignalingStateChangeListener
-        }
-        set{
-            onSignalingStateChangeListener = newValue
-        }
+    public func onSignalingStateChange(_ listener :@escaping ()->Void) {
+        onSignalingStateChangeListener = listener
     }
     
     private var onIceCandidateListener:(((_ candidate: FancyRTCIceCandidate)->Void)?)
     
-    public var onIceCandidate:(((_ candidate: FancyRTCIceCandidate)->Void)?) {
-        get {
-            return onIceCandidateListener
-        }
-        set {
-            onIceCandidateListener = newValue
-        }
+    public func onIceCandidate(_ listener :@escaping (FancyRTCIceCandidate)->Void) {
+        onIceCandidateListener = listener
     }
     
     
     private var onDataChannelListener:(((_ event: FancyRTCDataChannelEvent)->Void)?)
     
-    public var onDataChannel:(((_ event: FancyRTCDataChannelEvent)->Void)?) {
-        get{
-            return onDataChannelListener
-        }
-        set {
-            onDataChannelListener = newValue
-        }
+    public func onDataChannel(_ listener :@escaping (FancyRTCDataChannelEvent)->Void) {
+        onDataChannelListener = listener
     }
     
     
