@@ -13,9 +13,9 @@ import WebRTC
 @objcMembers public class FancyRTCPeerConnection: NSObject , RTCPeerConnectionDelegate{
     var _connection: RTCPeerConnection?
     var configuration: FancyRTCConfiguration
-   static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(
-    encoderFactory: RTCDefaultVideoEncoderFactory()
-    , decoderFactory: RTCDefaultVideoDecoderFactory())
+    static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(
+        encoderFactory: RTCDefaultVideoEncoderFactory()
+        , decoderFactory: RTCDefaultVideoDecoderFactory())
     
     public override init() {
         configuration = FancyRTCConfiguration()
@@ -78,9 +78,9 @@ import WebRTC
     }
     
     
-    private var onConnectionStateChangeListener: (() -> Void)?
+    private var onConnectionStateChangeListener: ((() -> Void)?)
     
-    public var onConnectionStateChange:(() -> Void)? {
+    public var onConnectionStateChange:((() -> Void)?) {
         get{
             return onConnectionStateChangeListener
         }
@@ -89,9 +89,9 @@ import WebRTC
         }
     }
     
-    private var onTrackListener: ((_ track :FancyRTCTrackEvent) -> Void)?
+    private var onTrackListener: (((FancyRTCTrackEvent) -> ())?)
     
-    public var onTrack:((_ track :FancyRTCTrackEvent) -> Void)? {
+    public var onTrack:(((FancyRTCTrackEvent) -> ())?) {
         get {
             return onTrackListener
         }
@@ -100,9 +100,9 @@ import WebRTC
         }
     }
     
-    private var onRemoveTrackListener: (()-> Void)?
+    private var onRemoveTrackListener: ((()-> Void)?)
     
-    public var onRemoveTrack: (()-> Void)? {
+    public var onRemoveTrack: ((()-> Void)?) {
         get{
             return onRemoveTrackListener
         }
@@ -111,9 +111,9 @@ import WebRTC
         }
     }
     
-    private var onRemoveStreamListener:((_ stream:FancyRTCMediaStream) -> Void)?
+    private var onRemoveStreamListener:(((_ stream:FancyRTCMediaStream) -> Void)?)
     
-    public var onRemoveStream:((_ stream:FancyRTCMediaStream) -> Void)? {
+    public var onRemoveStream:(((_ stream:FancyRTCMediaStream) -> Void)?) {
         get {
             return onRemoveStreamListener
         }
@@ -123,10 +123,11 @@ import WebRTC
     }
     
     
-    private var onIceGatheringStateChangeListener:(() -> Void)?
+    private var onIceGatheringStateChangeListener:((() -> Void)?)
     
     
-    public var onIceGatheringStateChange:(() -> Void)? {
+    
+    public var onIceGatheringStateChange:((() -> Void)?) {
         get {
             return onIceGatheringStateChangeListener
         }
@@ -136,9 +137,9 @@ import WebRTC
     }
     
     
-    private var onAddStreamListener:((_ stream: FancyRTCMediaStream)->Void)?
+    private var onAddStreamListener:(((_ stream: FancyRTCMediaStream)->Void)?)
     
-    public var onAddStream:((_ stream:FancyRTCMediaStream)->Void)? {
+    public var onAddStream:(((_ stream:FancyRTCMediaStream)->Void)?) {
         get {
             return onAddStreamListener
         }
@@ -148,9 +149,9 @@ import WebRTC
     }
     
     
-    private var onNegotiationNeededListener:(()->Void)?
+    private var onNegotiationNeededListener:((()->Void)?)
     
-    public var onNegotiationNeeded:(()->Void)? {
+    public var onNegotiationNeeded:((()->Void)?) {
         get {
             return onNegotiationNeededListener
         }
@@ -159,9 +160,9 @@ import WebRTC
         }
     }
     
-    private var onSignalingStateChangeListener:(()->Void)?
+    private var onSignalingStateChangeListener:((()->Void)?)
     
-    public var onSignalingStateChange:(()->Void)? {
+    public var onSignalingStateChange:((()->Void)?) {
         get {
             return onSignalingStateChangeListener
         }
@@ -170,9 +171,9 @@ import WebRTC
         }
     }
     
-    private var onIceCandidateListener:((_ candidate: FancyRTCIceCandidate)->Void)?
+    private var onIceCandidateListener:(((_ candidate: FancyRTCIceCandidate)->Void)?)
     
-    public var onIceCandidate:((_ candidate: FancyRTCIceCandidate)->Void)? {
+    public var onIceCandidate:(((_ candidate: FancyRTCIceCandidate)->Void)?) {
         get {
             return onIceCandidateListener
         }
@@ -182,9 +183,9 @@ import WebRTC
     }
     
     
-    private var onDataChannelListener:((_ event: FancyRTCDataChannelEvent)->Void)?
+    private var onDataChannelListener:(((_ event: FancyRTCDataChannelEvent)->Void)?)
     
-    public var onDataChannel:((_ event: FancyRTCDataChannelEvent)->Void)? {
+    public var onDataChannel:(((_ event: FancyRTCDataChannelEvent)->Void)?) {
         get{
             return onDataChannelListener
         }
@@ -209,7 +210,7 @@ import WebRTC
                     list.append(FancyRTCMediaStream(mediaStream:stream));
                 }
                 
-                 onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  rtpReceiver), streams: list, mediaTrack: (rtpReceiver.track != nil ? FancyRTCMediaStreamTrack(track: rtpReceiver.track!): nil), transceiver: nil))
+                onTrackListener!(FancyRTCTrackEvent(receiver:FancyRTCRtpReceiver(rtpReceiver:  rtpReceiver), streams: list, mediaTrack: (rtpReceiver.track != nil ? FancyRTCMediaStreamTrack(track: rtpReceiver.track!): nil), transceiver: nil))
             }
         }
     }
