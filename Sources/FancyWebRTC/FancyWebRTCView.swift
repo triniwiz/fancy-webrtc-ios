@@ -36,8 +36,13 @@ import WebRTC
         if(self.videoView != nil){
             self.videoView!.delegate = self
             self.videoView!.frame = self.bounds
+            self.videoView?.setSize(self.bounds.size)
             self.addSubview(videoView!)
         }
+    }
+    
+    public func setSize(size: CGSize){
+        self.videoView?.setSize(size)
     }
     
     public required init?(coder aDecoder: NSCoder) {
