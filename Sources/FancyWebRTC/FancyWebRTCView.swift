@@ -112,32 +112,33 @@ import WebRTC
     }
     
     public func setSrcObject(withFancy rtcStreamTrack: FancyRTCMediaStreamTrack) {
-        if(rtcStreamTrack.mediaStreamTrack is RTCAudioTrack) {return}
-        if (self.track != nil) {
-            if(self.videoView != nil){
-                self.track?.remove(self.videoView!)
+        if(rtcStreamTrack.mediaStreamTrack is RTCVideoTrack) {
+            if (self.track != nil) {
+                if(self.videoView != nil){
+                    self.track?.remove(self.videoView!)
+                }
+                self.track = nil
             }
-            self.track = nil
-        }
-        self.track = rtcStreamTrack.mediaStreamTrack as? RTCVideoTrack
-        if(self.track != nil && self.videoView != nil){
-            self.track?.add(self.videoView!)
+            self.track = rtcStreamTrack.mediaStreamTrack as? RTCVideoTrack
+            if(self.track != nil && self.videoView != nil){
+                self.track?.add(self.videoView!)
+            }
         }
     }
     
     
     public func setSrcObject(withRtc mediaStreamTrack: RTCMediaStreamTrack) {
-        if(mediaStreamTrack is RTCAudioTrack) {return}
-        if (self.track != nil) {
-            if(self.videoView != nil){
-                self.track?.remove(self.videoView!)
+        if(mediaStreamTrack is RTCVideoTrack) {
+            if (self.track != nil) {
+                if(self.videoView != nil){
+                    self.track?.remove(self.videoView!)
+                }
+                self.track = nil
             }
-            self.track = nil
+            self.track = mediaStreamTrack as? RTCVideoTrack
+            if(self.track != nil && self.videoView != nil){
+                self.track?.add(self.videoView!)
+            }
         }
-        self.track = mediaStreamTrack as? RTCVideoTrack
-        if(self.track != nil && self.videoView != nil){
-            self.track?.add(self.videoView!)
-        }
-        
     }
 }
