@@ -107,6 +107,7 @@ import WebRTC
     }
     
     public func setSrcObject(withFancy rtcStreamTrack: FancyRTCMediaStreamTrack) {
+        if(rtcStreamTrack.mediaStreamTrack is RTCAudioTrack) {return}
         if (self.track != nil) {
             if(self.videoView != nil){
                 self.track?.remove(self.videoView!)
@@ -121,6 +122,7 @@ import WebRTC
     
     
     public func setSrcObject(withRtc mediaStreamTrack: RTCMediaStreamTrack) {
+        if(mediaStreamTrack is RTCAudioTrack) {return}
         if (self.track != nil) {
             if(self.videoView != nil){
                 self.track?.remove(self.videoView!)
