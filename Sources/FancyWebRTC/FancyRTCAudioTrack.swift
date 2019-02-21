@@ -31,4 +31,8 @@ import WebRTC
             return _audioTrack
         }
     }
+    
+    public func applyConstraints(constraints: FancyRTCMediaTrackConstraints, listener: @escaping (_ error : String?) -> ()) {
+        listener(nil)
+    }
 }

@@ -13,11 +13,22 @@ public class FancyRTCMediaDevices: NSObject {
     private static let DEFAULT_HEIGHT = 480
     private static let DEFAULT_WIDTH = 640
     private static let DEFAULT_FPS = 15
-    private static var capturer: RTCVideoCapturer?
-    
+    static var videoTrackcapturerMap : [String:FancyCapturer ] = [:]
     enum ErrorDomain: String {
         case videoPermissionDenied = "Video permission denied"
         case audioPermissionDenied = "Audio permission denied"
+    }
+    
+    
+    public class FancyCapturer {
+        public var capturer: RTCCameraVideoCapturer
+        public var position: String
+        public var width: Int = 0
+        public var height: Int = 0
+        init(capturer: RTCCameraVideoCapturer, position: String) {
+            self.capturer = capturer;
+            self.position = position;
+        }
     }
     
     @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,
@@ -69,8 +80,8 @@ public class FancyRTCMediaDevices: NSObject {
             if (constraints.videoConstraints != nil && (constraints.videoConstraints!["width"] != nil) && (constraints.videoConstraints!["height"] != nil)) {
                 width = constraints.videoConstraints!["width"]
                 height = constraints.videoConstraints!["height"]
-               // let rate = constraints.videoConstraints!["frameRate"] as? Int
-               // frameRate = rate ?? DEFAULT_FPS
+                // let rate = constraints.videoConstraints!["frameRate"] as? Int
+                // frameRate = rate ?? DEFAULT_FPS
                 
                 if (width != nil && type(of: width) ==  type(of: NSDictionary.self)) {
                     var widthMap = width as! [AnyHashable:AnyHashable]
@@ -144,13 +155,17 @@ public class FancyRTCMediaDevices: NSObject {
             let fps = selectFpsForFormat(format: format)
             
             localStream.addVideoTrack(videoTrack)
-           capturer.startCapture(with: selectedDevice!, format: format, fps: Int(fps)) { (e: Error?) in
+            
+            capturer.startCapture(with: selectedDevice!, format: format, fps: Int(fps)) { (e: Error?) in
                 if(e != nil){
                     DispatchQueue.main.async {
                         listener(nil , e!.localizedDescription)
                     }
                 }else{
-                    self.capturer = capturer
+                    let cap = FancyCapturer(capturer: capturer, position: useFrontCamera ? "user":"environment")
+                    cap.width = w
+                    cap.height = h
+                    self.videoTrackcapturerMap[videoTrack.trackId] = cap
                     DispatchQueue.main.async {
                         listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
                     }
@@ -165,7 +180,7 @@ public class FancyRTCMediaDevices: NSObject {
         
     }
     
-   @objc public static func selectFormatForDevice(
+    @objc public static func selectFormatForDevice(
         device: AVCaptureDevice,
         width: Int32,
         height: Int32,
@@ -200,7 +215,7 @@ public class FancyRTCMediaDevices: NSObject {
         return selectedFormat!
     }
     
-   @objc public static func selectFpsForFormat(format: AVCaptureDevice.Format) -> Double {
+    @objc public static func selectFpsForFormat(format: AVCaptureDevice.Format) -> Double {
         var maxFrameRate = 0.0
         for fpsRange in format.videoSupportedFrameRateRanges{
             maxFrameRate = fmax(maxFrameRate, fpsRange.maxFrameRate)

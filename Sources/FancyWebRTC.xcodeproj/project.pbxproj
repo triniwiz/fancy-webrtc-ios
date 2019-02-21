@@ -41,6 +41,7 @@
 		F147D3A321F945BD00C79F73 /* FancyRTCDataChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D3A221F945BD00C79F73 /* FancyRTCDataChannel.swift */; };
 		F147D3A521F94CFF00C79F73 /* FancyRTCDataChannelInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D3A421F94CFF00C79F73 /* FancyRTCDataChannelInit.swift */; };
 		F147D3A721F951D700C79F73 /* FancyRTCMediaConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D3A621F951D700C79F73 /* FancyRTCMediaConstraints.swift */; };
+		F16E03C0221EE46700413774 /* FancyRTCMediaTrackConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16E03BF221EE46700413774 /* FancyRTCMediaTrackConstraints.swift */; };
 		F1A59BE021FA8060006FBFC8 /* FancyRTCMediaStreamConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A59BDF21FA8060006FBFC8 /* FancyRTCMediaStreamConstraints.swift */; };
 		F1A59BE221FA81C7006FBFC8 /* FancyRTCMediaDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A59BE121FA81C7006FBFC8 /* FancyRTCMediaDevices.swift */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		F147D3A221F945BD00C79F73 /* FancyRTCDataChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyRTCDataChannel.swift; sourceTree = "<group>"; };
 		F147D3A421F94CFF00C79F73 /* FancyRTCDataChannelInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyRTCDataChannelInit.swift; sourceTree = "<group>"; };
 		F147D3A621F951D700C79F73 /* FancyRTCMediaConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyRTCMediaConstraints.swift; sourceTree = "<group>"; };
+		F16E03BF221EE46700413774 /* FancyRTCMediaTrackConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyRTCMediaTrackConstraints.swift; sourceTree = "<group>"; };
 		F1A59BDF21FA8060006FBFC8 /* FancyRTCMediaStreamConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyRTCMediaStreamConstraints.swift; sourceTree = "<group>"; };
 		F1A59BE121FA81C7006FBFC8 /* FancyRTCMediaDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyRTCMediaDevices.swift; sourceTree = "<group>"; };
 		F3C7726A44B6784F026738AB /* Pods-FancyWebRTC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FancyWebRTC.release.xcconfig"; path = "Pods/Target Support Files/Pods-FancyWebRTC/Pods-FancyWebRTC.release.xcconfig"; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				F147D3A621F951D700C79F73 /* FancyRTCMediaConstraints.swift */,
 				F1A59BDF21FA8060006FBFC8 /* FancyRTCMediaStreamConstraints.swift */,
 				F1A59BE121FA81C7006FBFC8 /* FancyRTCMediaDevices.swift */,
+				F16E03BF221EE46700413774 /* FancyRTCMediaTrackConstraints.swift */,
 			);
 			path = FancyWebRTC;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				F147D39B21F935DF00C79F73 /* FancyRTCDTMFSender.swift in Sources */,
 				F147D34921F3F8DD00C79F73 /* FancyRTCPeerConnection.swift in Sources */,
 				F147D39F21F9408D00C79F73 /* FancyRTCIceCandidate.swift in Sources */,
+				F16E03C0221EE46700413774 /* FancyRTCMediaTrackConstraints.swift in Sources */,
 				F147D35221F7D0AA00C79F73 /* FancyRTCBundlePolicy.swift in Sources */,
 				F147D3A521F94CFF00C79F73 /* FancyRTCDataChannelInit.swift in Sources */,
 				F147D3A121F9455400C79F73 /* FancyRTCDataChannelEvent.swift in Sources */,
