@@ -8,6 +8,7 @@
 
 import Foundation
 import WebRTC
+import ReplayKit
 @objc(FancyRTCMediaDevices)
 public class FancyRTCMediaDevices: NSObject {
     private static let DEFAULT_HEIGHT = 480
@@ -178,6 +179,83 @@ public class FancyRTCMediaDevices: NSObject {
             return
         }
         
+    }
+    
+    
+    @objc public static func getDisplayMedia(constraints:FancyRTCMediaStreamConstraints,
+                                          listener: @escaping (_ stream : FancyRTCMediaStream?, _ error : String?) -> ()){
+        let factory = FancyRTCPeerConnection.factory
+        
+        let localStream = factory.mediaStream(withStreamId: UUID().uuidString)
+        
+        
+        if (!AVCaptureState.isAudioDisabled()) {
+            let audioTrackId = UUID().uuidString
+            let audioSource = factory.audioSource(with: RTCMediaConstraints.init(mandatoryConstraints: nil, optionalConstraints: nil))
+            let audioTrack = factory.audioTrack(with: audioSource, trackId: audioTrackId)
+            audioTrack.isEnabled = true
+            localStream.addAudioTrack(audioTrack)
+            if(AVCaptureState.isVideoDisabled()){
+                listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
+            }
+        } else {
+            listener(nil,ErrorDomain.audioPermissionDenied.rawValue)
+            return
+        }
+        
+        let recorder = RPScreenRecorder.shared()
+        if (!recorder.isAvailable) {
+            let videoSource = factory.videoSource()
+            let videoTrack = factory.videoTrack(with: videoSource, trackId: UUID().uuidString)
+            videoTrack.isEnabled = true;
+            let capturer = RTCVideoCapturer(delegate: videoSource)
+            localStream.addVideoTrack(videoTrack)
+            
+            recorder.isMicrophoneEnabled = false
+            recorder.startCapture(handler: { (sampleBuffer, bufferType, error) in
+                if (bufferType == RPSampleBufferType.video) {
+                    self.handleSourceBuffer(capturer: capturer, source: videoSource, sampleBuffer: sampleBuffer, sampleType: bufferType)
+                }
+            }) { (error) in
+                if(error != nil){
+                    DispatchQueue.main.async {
+                        listener(nil , error!.localizedDescription)
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
+                    }
+                }
+            }
+            
+        } else {
+            listener(nil,"Screen recorder is not available!")
+            return
+        }
+        
+    }
+    
+    static func handleSourceBuffer(capturer:RTCVideoCapturer, source: RTCVideoSource,sampleBuffer:CMSampleBuffer,sampleType: RPSampleBufferType) {
+        if (CMSampleBufferGetNumSamples(sampleBuffer) != 1 || !CMSampleBufferIsValid(sampleBuffer) ||
+            !CMSampleBufferDataIsReady(sampleBuffer)) {
+            return;
+        }
+        
+        let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+        if (pixelBuffer == nil) {
+            return;
+        }
+        
+        let width = CVPixelBufferGetWidth(pixelBuffer!);
+        let height = CVPixelBufferGetHeight(pixelBuffer!);
+        
+        source.adaptOutputFormat(toWidth: Int32(width/2), height: Int32(height/2), fps: 8)
+        
+        let rtcPixelBuffer = RTCCVPixelBuffer(pixelBuffer: pixelBuffer!)
+        let timeStampNs =
+            CMTimeGetSeconds(CMSampleBufferGetPresentationTimeStamp(sampleBuffer)) * Float64(NSEC_PER_SEC)
+        let videoFrame =  RTCVideoFrame(buffer: rtcPixelBuffer, rotation: RTCVideoRotation._0, timeStampNs: Int64(timeStampNs))
+        source.capturer(capturer, didCapture: videoFrame)
     }
     
     @objc public static func selectFormatForDevice(
