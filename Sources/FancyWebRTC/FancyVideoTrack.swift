@@ -48,10 +48,10 @@ import WebRTC
                         let w = capturer!.width
                         let h = capturer!.height
                         
-                        let format = FancyRTCMediaDevices.selectFormatForDevice(device: selectedDevice!, width: Int32(w), height: Int32(h), capturer: capturer!.capturer)
+                        let format = FancyRTCMediaDevices.selectFormatForDevice(device: selectedDevice!, width: Int32(w), height: Int32(h), capturer: capturer!.capturer!)
                         let fps = FancyRTCMediaDevices.selectFpsForFormat(format: format)
                         
-                        capturer?.capturer.startCapture(with: selectedDevice!, format: format, fps: Int(fps)) { (e: Error?) in
+                        capturer?.capturer!.startCapture(with: selectedDevice!, format: format, fps: Int(fps)) { (e: Error?) in
                             if(e != nil){
                                 DispatchQueue.main.async {
                                     listener(e!.localizedDescription)
