@@ -67,10 +67,13 @@ import WebRTC
         switch scale {
         case .fill:
             self.contentMode = .scaleAspectFill
+            self.videoView?.contentMode = .scaleAspectFill
         case .fit:
             self.contentMode = .scaleAspectFit
+            self.videoView?.contentMode = .scaleAspectFit
         default:
             self.contentMode = .scaleToFill
+            self.videoView?.contentMode = .scaleToFill
         }
     }
     
