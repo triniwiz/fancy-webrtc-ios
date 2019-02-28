@@ -30,6 +30,7 @@ import WebRTC
             self.addSubview(videoView!)
         }
     }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.videoView = RTCEAGLVideoView.init(frame: frame)
@@ -55,6 +56,23 @@ import WebRTC
         }
     }
     
+    public enum Scaling {
+        case fit
+        case fill
+        case none
+    }
+    
+    
+    public func setScaling(scale: Scaling){
+        switch scale {
+        case .fill:
+            self.contentMode = .scaleAspectFill
+        case .fit:
+            self.contentMode = .scaleAspectFit
+        default:
+            self.contentMode = .scaleToFill
+        }
+    }
     
     public override func layoutSubviews() {
         if(self.videoView != nil){
