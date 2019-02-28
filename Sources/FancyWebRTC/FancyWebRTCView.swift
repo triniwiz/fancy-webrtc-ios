@@ -56,7 +56,8 @@ import WebRTC
         }
     }
     
-    @objc public enum Scaling: Int {
+    @objc(FancyWebRTCViewScaling)
+    public enum Scaling: Int {
         case fit
         case fill
         case none
