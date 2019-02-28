@@ -56,7 +56,7 @@ import WebRTC
         }
     }
     
-    public enum Scaling {
+    @objc public enum Scaling: Int {
         case fit
         case fill
         case none
