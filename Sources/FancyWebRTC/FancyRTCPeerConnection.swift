@@ -22,9 +22,45 @@ import WebRTC
     
     var _connection: RTCPeerConnection
     var configuration: FancyRTCConfiguration
-    static let factory: RTCPeerConnectionFactory = RTCPeerConnectionFactory(
-        encoderFactory: RTCDefaultVideoEncoderFactory()
-        , decoderFactory: RTCDefaultVideoDecoderFactory())
+    
+    private static func getSupportedVideoDecoder(factory: RTCDefaultVideoDecoderFactory) -> RTCVideoCodecInfo{
+        let supportedCodecs: [RTCVideoCodecInfo] = factory.supportedCodecs()
+        if supportedCodecs.contains(RTCVideoCodecInfo.init(name: kRTCVp9CodecName)) {
+            return RTCVideoCodecInfo.init(name: kRTCVp9CodecName)
+        } else if supportedCodecs.contains(RTCVideoCodecInfo.init(name: kRTCH264CodecName)){
+            return RTCVideoCodecInfo.init(name: kRTCH264CodecName)
+        } else {
+            return RTCVideoCodecInfo.init(name: kRTCVp8CodecName)
+        }
+    }
+    
+    private static func getSupportedVideoEncoder(factory: RTCDefaultVideoEncoderFactory) -> RTCVideoCodecInfo{
+        let supportedCodecs: [RTCVideoCodecInfo] = RTCDefaultVideoEncoderFactory.supportedCodecs()
+        if supportedCodecs.contains(RTCVideoCodecInfo.init(name: kRTCVp9CodecName)) {
+            return RTCVideoCodecInfo.init(name: kRTCVp9CodecName)
+        } else if supportedCodecs.contains(RTCVideoCodecInfo.init(name: kRTCH264CodecName)){
+            return RTCVideoCodecInfo.init(name: kRTCH264CodecName)
+        } else {
+            return RTCVideoCodecInfo.init(name: kRTCVp8CodecName)
+        }
+    }
+    
+    private static var _factory: RTCPeerConnectionFactory?
+    static var factory: RTCPeerConnectionFactory {
+        get {
+            if self._factory == nil {
+                let encoderFactory = RTCDefaultVideoEncoderFactory()
+                let decoderFactory = RTCDefaultVideoDecoderFactory()
+                encoderFactory.preferredCodec = getSupportedVideoEncoder(factory: encoderFactory)
+                
+                self._factory = RTCPeerConnectionFactory(
+                    encoderFactory: encoderFactory
+                    , decoderFactory: decoderFactory)
+            }
+            
+            return self._factory!
+        }
+    }
     
     public override init() {
         configuration = FancyRTCConfiguration()
