@@ -76,6 +76,8 @@ import WebRTC
             self.contentMode = .scaleToFill
             self.videoView?.contentMode = .scaleToFill
         }
+        self.videoView?.setNeedsLayout()
+        self.setNeedsLayout()
     }
     
     public override func layoutSubviews() {
