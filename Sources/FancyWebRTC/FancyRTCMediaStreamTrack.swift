@@ -13,9 +13,11 @@ import WebRTC
 @objcMembers public class FancyRTCMediaStreamTrack: NSObject {
     private var _mediaStreamTrack: RTCMediaStreamTrack
     
+    private var _settings: FancyRTCMediaTrackSettings
     
     @nonobjc public init(track: RTCMediaStreamTrack){
         self._mediaStreamTrack = track
+        self._settings = FancyRTCMediaTrackSettings(id: track.trackId, type: track.kind)
     }
     
     public var id: String {
@@ -63,6 +65,12 @@ import WebRTC
     public var mediaStreamTrack: RTCMediaStreamTrack {
         get {
             return (_mediaStreamTrack )
+        }
+    }
+    
+    public var settings: FancyRTCMediaTrackSettings {
+        get {
+            return (_settings)
         }
     }
 }

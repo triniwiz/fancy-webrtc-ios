@@ -386,5 +386,15 @@ import WebRTC
             return _connection
         }
     }
+    
+    public var senders: Array<FancyRTCRtpSender> {
+        get {
+            var list: [FancyRTCRtpSender] = []
+            for sender in _connection.senders {
+                list.append(FancyRTCRtpSender(sender: sender))
+            }
+            return list
+        }
+    }
 }
 

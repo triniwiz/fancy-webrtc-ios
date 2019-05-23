@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6AFEA2AC55D68614DF4667EE /* libPods-FancyWebRTCTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3F230E5B450C56380A9DCC /* libPods-FancyWebRTCTests.a */; };
+		F12954CB2297121900EBBE46 /* FancyRTCMediaTrackSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12954CA2297121900EBBE46 /* FancyRTCMediaTrackSettings.swift */; };
 		F147D2C621F37B1500C79F73 /* FancyWebRTC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F147D2BC21F37B1500C79F73 /* FancyWebRTC.framework */; };
 		F147D2CB21F37B1500C79F73 /* FancyWebRTCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D2CA21F37B1500C79F73 /* FancyWebRTCTests.swift */; };
 		F147D2CD21F37B1500C79F73 /* FancyWebRTC.h in Headers */ = {isa = PBXBuildFile; fileRef = F147D2BF21F37B1500C79F73 /* FancyWebRTC.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +63,7 @@
 		762D14F08AAF5879F91DB84D /* Pods-FancyWebRTCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FancyWebRTCTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FancyWebRTCTests/Pods-FancyWebRTCTests.release.xcconfig"; sourceTree = "<group>"; };
 		9598CF5BF3FF344E88C17B2F /* Pods-FancyWebRTC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FancyWebRTC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FancyWebRTC/Pods-FancyWebRTC.debug.xcconfig"; sourceTree = "<group>"; };
 		DF7BFFCE0F107ACEEBA1594F /* libPods-FancyWebRTC.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FancyWebRTC.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F12954CA2297121900EBBE46 /* FancyRTCMediaTrackSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FancyRTCMediaTrackSettings.swift; sourceTree = "<group>"; };
 		F147D2BC21F37B1500C79F73 /* FancyWebRTC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FancyWebRTC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F147D2BF21F37B1500C79F73 /* FancyWebRTC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FancyWebRTC.h; sourceTree = "<group>"; };
 		F147D2C021F37B1500C79F73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				F1A59BDF21FA8060006FBFC8 /* FancyRTCMediaStreamConstraints.swift */,
 				F1A59BE121FA81C7006FBFC8 /* FancyRTCMediaDevices.swift */,
 				F16E03BF221EE46700413774 /* FancyRTCMediaTrackConstraints.swift */,
+				F12954CA2297121900EBBE46 /* FancyRTCMediaTrackSettings.swift */,
 			);
 			path = FancyWebRTC;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				F147D35221F7D0AA00C79F73 /* FancyRTCBundlePolicy.swift in Sources */,
 				F147D3A521F94CFF00C79F73 /* FancyRTCDataChannelInit.swift in Sources */,
 				F147D3A121F9455400C79F73 /* FancyRTCDataChannelEvent.swift in Sources */,
+				F12954CB2297121900EBBE46 /* FancyRTCMediaTrackSettings.swift in Sources */,
 				F147D39D21F937C500C79F73 /*  FancyRTCRtpParameters.swift in Sources */,
 				F1A59BE221FA81C7006FBFC8 /* FancyRTCMediaDevices.swift in Sources */,
 				F147D38921F9217800C79F73 /* FancyRTCRtpReceiver.swift in Sources */,

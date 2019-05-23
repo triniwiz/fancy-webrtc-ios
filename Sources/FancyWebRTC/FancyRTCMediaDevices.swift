@@ -28,10 +28,15 @@ public class FancyRTCMediaDevices: NSObject {
         public var width: Int = 0
         public var height: Int = 0
         public var screenSharing = false
+        public var frameRate: Int = 25
+        public var aspectRatio: Int = 0
+        
+        
         init(capturer: RTCCameraVideoCapturer?, position: String) {
             self.capturer = capturer;
             self.position = position;
         }
+        
     }
     
     @objc public static func getUserMedia(constraints:FancyRTCMediaStreamConstraints,
@@ -40,8 +45,12 @@ public class FancyRTCMediaDevices: NSObject {
         
         let localStream = factory.mediaStream(withStreamId: UUID().uuidString)
         
+        if !constraints.isAudioEnabled && !constraints.isVideoEnabled {
+            listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
+            return
+        }
         
-        if (!AVCaptureState.isAudioDisabled()) {
+        if (!AVCaptureState.isAudioDisabled() && constraints.isAudioEnabled) {
             let audioTrackId = UUID().uuidString
             let audioSource = factory.audioSource(with: RTCMediaConstraints.init(mandatoryConstraints: nil, optionalConstraints: nil))
             let audioTrack = factory.audioTrack(with: audioSource, trackId: audioTrackId)
@@ -49,6 +58,12 @@ public class FancyRTCMediaDevices: NSObject {
             localStream.addAudioTrack(audioTrack)
             if(AVCaptureState.isVideoDisabled()){
                 listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
+                return
+            }
+            
+            if !constraints.isVideoEnabled {
+                listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)
+                return
             }
         } else {
             listener(nil,ErrorDomain.audioPermissionDenied.rawValue)
@@ -56,7 +71,7 @@ public class FancyRTCMediaDevices: NSObject {
         }
         
         
-        if (!AVCaptureState.isVideoDisabled()) {
+        if (!AVCaptureState.isVideoDisabled() && constraints.isVideoEnabled) {
             let videoSource = factory.videoSource()
             let capturer = RTCCameraVideoCapturer(delegate: videoSource)
             
@@ -168,6 +183,8 @@ public class FancyRTCMediaDevices: NSObject {
                     let cap = FancyCapturer(capturer: capturer, position: useFrontCamera ? "user":"environment")
                     cap.width = w
                     cap.height = h
+                    cap.aspectRatio = w/h
+                    cap.frameRate = Int(fps)
                     self.videoTrackcapturerMap[videoTrack.trackId] = cap
                     DispatchQueue.main.async {
                         listener(FancyRTCMediaStream(mediaStream: localStream) ,nil)

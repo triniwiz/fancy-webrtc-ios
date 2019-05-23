@@ -44,6 +44,20 @@ import WebRTC
         return fancyAudioTracks;
     }
     
+    public var tracks: Array<FancyRTCMediaStreamTrack> {
+        var tracks:[FancyRTCMediaStreamTrack] = []
+        for track in _mediaStream.audioTracks {
+            tracks.append(FancyRTCMediaStreamTrack(track: track))
+        }
+        
+        for track in _mediaStream.videoTracks {
+            tracks.append(FancyRTCMediaStreamTrack(track: track))
+        }
+        
+        return tracks;
+    }
+    
+    
     
     public func addTrack(withVideo track: FancyRTCVideoTrack) {
         self._mediaStream.addVideoTrack(track.videoTrack)
