@@ -51,6 +51,10 @@ import WebRTC
         
     }
     
+    public func stop(){
+        _mediaStreamTrack.isEnabled = false
+    }
+    
     public var  readyState: String {
         get {
             switch ((_mediaStreamTrack ).readyState) {

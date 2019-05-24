@@ -24,14 +24,6 @@ import WebRTC
         }
     }
     
-    public func setEnabled(enabled: Bool){
-        _videoTrack.isEnabled = enabled
-    }
-    
-    public func stop(){
-        _videoTrack.isEnabled = false
-    }
-    
     public func applyConstraints(constraints: FancyRTCMediaTrackConstraints, listener: @escaping (_ error : String?) -> ()) {
         if (constraints.facingMode != nil) {
             let facingMode = constraints.facingMode;

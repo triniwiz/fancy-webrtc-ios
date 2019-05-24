@@ -32,15 +32,6 @@ import WebRTC
         }
     }
     
-    public func setEnabled(enabled: Bool){
-        _audioTrack.isEnabled = enabled
-    }
-    
-    public func stop(){
-        _audioTrack.isEnabled = false
-    }
-    
-    
     public func applyConstraints(constraints: FancyRTCMediaTrackConstraints, listener: @escaping (_ error : String?) -> ()) {
         listener(nil)
     }
