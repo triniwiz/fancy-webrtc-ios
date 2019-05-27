@@ -22,5 +22,5 @@ Pod::Spec.new do |s|
 
     s.swift_version = '4.0'
 
-    s.dependency 'GoogleWebRTC' , '~> 1.1.26465'
+    s.dependency 'GoogleWebRTC' , '~> 1.1.27828'
   end
