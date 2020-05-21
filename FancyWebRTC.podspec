@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
     s.license      = { :type => "MIT", :file => "LICENSE" }
 
 
-    s.author             = { "Osei Fortune" => "fortune.osei@yahoo.com" }
+    s.author        = { "Osei Fortune" => "fortune.osei@yahoo.com" }
 
     s.platform     = :ios, "9.0"
 
@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
 
     s.source_files  = "Sources/FancyWebRTC/*.{swift}"
 
-    s.swift_version = '4.0'
+    s.swift_versions = ['4.0','4.2', '5.0']
 
-    s.dependency 'GoogleWebRTC' , '~> 1.1.27828'
+    s.dependency 'GoogleWebRTC' , '~> 1.1.29400'
   end

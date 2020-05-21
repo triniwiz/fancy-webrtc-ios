@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		751FFF105BC8B9FAC6A07F0A /* Pods_FancyWebRTCDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A87593488413C3FCBECD316D /* Pods_FancyWebRTCDemo.framework */; };
 		F147D2E321F37BFC00C79F73 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D2E221F37BFC00C79F73 /* AppDelegate.swift */; };
 		F147D2E521F37BFC00C79F73 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F147D2E421F37BFC00C79F73 /* ViewController.swift */; };
 		F147D2E821F37BFC00C79F73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F147D2E621F37BFC00C79F73 /* Main.storyboard */; };
@@ -80,6 +81,7 @@
 			files = (
 				F147D34521F3E77100C79F73 /* FancyWebRTC.framework in Frameworks */,
 				F147D34421F3E69400C79F73 /* SocketIO.framework in Frameworks */,
+				751FFF105BC8B9FAC6A07F0A /* Pods_FancyWebRTCDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,22 +344,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
-				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FancyWebRTCDemo/Pods-FancyWebRTCDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		75EEF197E6229112297D4D52 /* [CP] Check Pods Manifest.lock */ = {
