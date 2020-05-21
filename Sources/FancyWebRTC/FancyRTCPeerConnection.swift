@@ -71,7 +71,6 @@ import WebRTC
     
     public init(config: FancyRTCConfiguration) {
         configuration = config
-        FancyRTCPeerConnection.factory.peerConnection
         _connection = FancyRTCPeerConnection.factory.peerConnection(with: configuration.configuration, constraints: RTCMediaConstraints(mandatoryConstraints: nil, optionalConstraints: nil), delegate: nil)
         super.init()
         _connection.delegate = self
