@@ -16,14 +16,14 @@ import WebRTC
         
     }
     
-    private var videoView: RTCEAGLVideoView?
+    private var videoView: RTCMTLVideoView?
     private var mirror: Bool = false
     private var track: RTCVideoTrack?
     private var mediaStream: FancyRTCMediaStream?
     
     public convenience init(){
         self.init(frame: .zero)
-        self.videoView = RTCEAGLVideoView.init(frame: frame)
+        self.videoView = RTCMTLVideoView(frame: frame)
         if(self.videoView != nil){
             self.videoView!.delegate = self
             self.videoView!.frame = self.bounds
@@ -33,7 +33,7 @@ import WebRTC
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        self.videoView = RTCEAGLVideoView.init(frame: frame)
+        self.videoView = RTCMTLVideoView(frame: frame)
         if(self.videoView != nil){
             self.videoView!.delegate = self
             self.videoView!.frame = self.bounds
@@ -48,7 +48,7 @@ import WebRTC
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.videoView = RTCEAGLVideoView.init(coder: aDecoder)
+        self.videoView = RTCMTLVideoView(coder: aDecoder)
         if(self.videoView != nil){
             self.videoView!.delegate = self
             self.videoView!.frame = self.bounds
