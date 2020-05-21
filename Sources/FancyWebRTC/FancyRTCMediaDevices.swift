@@ -9,6 +9,7 @@
 import Foundation
 import WebRTC
 import ReplayKit
+@objcMembers
 @objc(FancyRTCMediaDevices)
 public class FancyRTCMediaDevices: NSObject {
     private static let DEFAULT_HEIGHT = 480
@@ -102,7 +103,7 @@ public class FancyRTCMediaDevices: NSObject {
                 // frameRate = rate ?? DEFAULT_FPS
                 
                 if (width != nil && type(of: width) ==  type(of: NSDictionary.self)) {
-                    var widthMap = width as! [AnyHashable:AnyHashable]
+                    let widthMap = width as! [AnyHashable:AnyHashable]
                     if ((widthMap["min"]) != nil) {
                         minWidth = widthMap["min"] as! Int
                     }
@@ -114,7 +115,7 @@ public class FancyRTCMediaDevices: NSObject {
                     }
                 }
                 if (height != nil && type(of: height) == type(of: NSDictionary.self)) {
-                    var heightMap = height as! [AnyHashable:AnyHashable]
+                    let heightMap = height as! [AnyHashable:AnyHashable]
                     if ((heightMap["min"]) != nil) {
                         minHeight = heightMap["min"] as! Int
                     }
@@ -363,4 +364,51 @@ public class FancyRTCMediaDevices: NSObject {
         return maxFrameRate
     }
     
+    
+    @objc public static func enumerateDevices() -> [String]{
+        var devices: [String] = []
+        let encoder = JSONEncoder()
+        if(!AVCaptureState.isVideoDisabled()){
+            let captureDevices = RTCCameraVideoCapturer.captureDevices()
+            var i = 0
+            for captureDevice in captureDevices {
+                var device: [String:String] = [:]
+                if(captureDevice.position == AVCaptureDevice.Position.front){
+                    device["facing"] = "front"
+                }
+                
+                if(captureDevice.position == AVCaptureDevice.Position.back){
+                    device["facing"] = "environment"
+                }
+
+                device["deviceId"] =  String(i)
+                device["groupId"]  = ""
+                device["label"] = captureDevice.localizedName
+                device["kind"] = "videoinput"
+                do {
+                    let json = try encoder.encode(device)
+                    let raw = String(data: json, encoding: .utf8) ?? ""
+                    if(!raw.isEmpty){
+                        devices.append(raw)
+                    }
+                } catch {}
+                i += 1
+            }
+        }
+
+        var audio: [String: String] = [:]
+        audio["deviceId"] = "audio-1"
+        audio["groupId"] = ""
+        audio["label"] = "Audio"
+        audio["kind"]  = "audioinput"
+        do {
+            let json = try encoder.encode(audio)
+            let raw = String(data: json, encoding: .utf8) ?? ""
+            if(!raw.isEmpty){
+                devices.append(raw)
+            }
+        } catch {}
+        
+        return devices
+    }
 }
