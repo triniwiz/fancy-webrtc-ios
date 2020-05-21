@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
 
     s.author        = { "Osei Fortune" => "fortune.osei@yahoo.com" }
 
-    s.platform     = :ios, "9.0"
+    s.platform     = :ios, "10.0"
 
     s.source       = { :git => "https://github.com/triniwiz/fancy-webrtc-ios.git", :tag => "#{s.version}" }
 
