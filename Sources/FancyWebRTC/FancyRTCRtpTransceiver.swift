@@ -30,7 +30,7 @@ import WebRTC
             return FancyRTCRtpTransceiverDirection.init(direction: _rtpTransceiver.direction)
         }
         set{
-            _rtpTransceiver.direction = newValue.rtcValue
+            _rtpTransceiver.setDirection(newValue.rtcValue, error: nil)
         }
     }
     
@@ -73,6 +73,6 @@ import WebRTC
     
     
     public func stop() {
-        _rtpTransceiver.stop()
+        _rtpTransceiver.stopInternal()
     }
 }
